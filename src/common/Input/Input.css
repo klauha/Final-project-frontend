@@ -1,0 +1,42 @@
+.inputDesign {
+    height: 2.5em;
+    width: 18em;
+    padding: 5px;
+    border: none;
+    outline: none;
+    margin: 2em;
+    border-radius: 0.5em;
+
+    box-shadow: 0 0 6px rgba(51, 64, 63, 0.6);
+   
+}
+
+.inputProfileDesign {
+    height: 1.5em;
+    width: 15em;
+    /* border: 0.1em solid #080707cb; */
+    border-radius: 0.5em;
+    margin: 1em;
+    padding: 0.5em;
+    background-color:transparent;
+    border-color: rgb(60, 43, 120);
+}
+
+.inputForm{
+    height: 1.5em;
+    width: 20em;
+    background-color:transparent;
+    font-size: 18px;
+    font-family: poppins;
+    border-radius: 0.5em;
+    margin: 1em;
+    padding: 0.5em;
+    border-color: rgb(60, 43, 120);
+   
+
+}
+
+.inputDesign:focus {
+    border-bottom: 1px solid #000; 
+
+}
