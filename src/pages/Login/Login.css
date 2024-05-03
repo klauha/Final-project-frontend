@@ -1,7 +1,7 @@
 .loginDesign {
     min-height: 92vh;
     width: 100vw;
-    background-color: blue;
+    background-color: whitesmoke;
     display: flex;
     flex-direction: column;
     justify-content: center;

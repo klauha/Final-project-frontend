@@ -35,7 +35,6 @@ export const Login = () => {
     setBodyCredentialsError({...bodyCredentialsError, email: ""})
     setBodyCredentialsError({...bodyCredentialsError, password: ""})
 
-    console.log(1);
     if(!bodyCredentials.email) {
       setBodyCredentialsError({...bodyCredentialsError, email: "Introduce un email"})
 
@@ -43,11 +42,11 @@ export const Login = () => {
     }
 
     if (bodyCredentials.password === "") {
-      console.log(3);
+
       setBodyCredentialsError({...bodyCredentialsError, password: "Introduce el password"})
       return;
     }
-console.log(4);
+
     // Llamar a la función de inicio de sesión proporcionando las credenciales
     const responseApiLogin = await login(bodyCredentials)
     const decoded = decodeToken(responseApiLogin.token)

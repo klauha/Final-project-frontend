@@ -3,6 +3,7 @@ import "./Header.css"
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutRdx, userData } from '../../app/slices/userSlice';
+import { CustomLink } from '../CustomLink/CustomLink';
 
 
 
