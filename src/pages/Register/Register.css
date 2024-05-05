@@ -1,1 +1,25 @@
 
+.registerDesign {
+    min-height: 92vh;
+    width: 100vw;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+.formRegister {
+    width: 20em;
+    height: 30em;
+    border-radius: 3%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    box-shadow: 0 0 6px rgba(51, 64, 63, 0.6);
+   
+}

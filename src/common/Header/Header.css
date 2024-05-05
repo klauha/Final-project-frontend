@@ -1,0 +1,35 @@
+.headerDesign {
+    box-sizing: border-box;
+    height: 8vh;
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(21, 21, 111);
+    /* margin-right: 15px; */
+}
+
+.header-logout {
+    font-family: 'Poppins', sans-serif;
+    font-weight: normal;
+    color: white;
+     padding: 40px;
+}
+
+.header-logout:hover {
+    cursor: pointer;
+    transition: 0.5s;
+    color: rgb(0, 1, 1);
+    text-decoration: underline;
+    text-decoration-color:aqua;
+}
+.logo-style {
+    height:100%;
+    margin-left: 20px;
+     object-fit: contain;
+}
+.links-container {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}

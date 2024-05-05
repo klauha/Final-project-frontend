@@ -7,14 +7,11 @@
     border-radius: 0.5em;
     color:white;
     font-weight: bold;
-
     display: flex;
     justify-content: center;
     align-items: center;
-   background-color: rgb(20, 34, 71) ;
-    font-family: poppins;
+   background-color: rgb(21, 21, 111) ;;
     font-size: 15px;
-    font-family: poppins;
     opacity: 1;
 }
 

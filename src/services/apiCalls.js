@@ -1,5 +1,26 @@
 const apiUrl = "http://localhost:4000"
 
+export const register = async (bodyCredentials) => {
+    try {
+        const response = await fetch(
+            `${apiUrl}/api/auth/register`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(bodyCredentials),
+            }
+        )
+        const data = await response.json()
+
+        return data
+
+    } catch (error) {
+        return error
+    }
+}
+
 export const login = async (bodyCredentials) => {
     try {
         const response = await fetch(
