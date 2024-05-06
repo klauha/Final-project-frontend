@@ -42,3 +42,13 @@
     border-bottom: 1px solid #000; 
 
 }
+.input-issue-design {
+    height: 2.5em;
+    width: 30em;
+    padding: 5px;
+    border: none;
+    outline: none;
+    margin: 2em;
+    border-radius: 0.5em;
+    box-shadow: 0 0 6px rgba(51, 64, 63, 0.6);
+}

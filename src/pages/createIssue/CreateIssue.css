@@ -1,0 +1,43 @@
+.create-issue-design {
+    min-height: 92vh;
+    width: 100vw;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.container-create-issue {
+    width: 110em;
+    height: 40em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 1%;
+    box-shadow: 0 0 6px rgba(51, 64, 63, 0.6);
+    font-family: poppins;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1em;
+}
+.container-issue {
+    width: 40em;
+    height: 30em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1em;
+    border-radius: 1%;
+    box-shadow: 0 0 6px rgba(51, 64, 63, 0.6);
+    background-color: rgb(242, 247, 247);
+}

@@ -1,7 +1,7 @@
 .loginDesign {
     min-height: 92vh;
     width: 100vw;
-    background-color: whitesmoke;
+    background-color: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -15,7 +15,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: whitesmoke;
+    background-color: white;
     box-shadow: 0 0 6px rgba(51, 64, 63, 0.6);
 }
 h5 {
