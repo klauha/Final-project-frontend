@@ -40,3 +40,22 @@ export const login = async (bodyCredentials) => {
         return error
     }
 }
+export const getDepartament = async () => {
+    try {
+        const response = await fetch(
+            `${apiUrl}/api/departament`,
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }
+        )
+        const data = await response.json()
+
+        return data
+
+    } catch (error) {
+        return error
+    }
+}

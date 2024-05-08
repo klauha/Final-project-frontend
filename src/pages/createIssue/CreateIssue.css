@@ -19,7 +19,8 @@
     background-color: white;
     border-radius: 1%;
     box-shadow: 0 0 6px rgba(51, 64, 63, 0.6);
-    font-family: poppins;
+
+
 }
 
 .form-group {
@@ -39,5 +40,6 @@
     margin: 1em;
     border-radius: 1%;
     box-shadow: 0 0 6px rgba(51, 64, 63, 0.6);
+
     background-color: rgb(242, 247, 247);
 }

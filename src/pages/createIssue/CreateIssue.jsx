@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./CreateIssue.css"
 import { Button } from '../../common/Button/Button'
 import { Input } from '../../common/Input/Input'
@@ -12,6 +12,7 @@ export const CreateIssue = () => {
             description: '',
         }
     )
+    const [departaments, setDepartaments] = useState([])
 
     const inputHandler = (e) => {
         setBodyDataIssue((prevState) => (
@@ -22,6 +23,14 @@ export const CreateIssue = () => {
         ))
     }
 
+        const fetchDepartament = async () => {
+            const response = await getDepartament()
+            setDepartaments(response.data)
+        
+        }
+        useEffect(() => {
+            fetchDepartament()
+        }, [])
 
     return (
 
@@ -77,5 +86,6 @@ export const CreateIssue = () => {
                 </div>
             </div>
         </div>
+        
     )
 }
