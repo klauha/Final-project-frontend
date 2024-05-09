@@ -105,3 +105,24 @@ export const createIssue = async (token, bodyDataIssue) => {
         return error
     }
 }
+export const getMyIssues = async (token) => {
+    try {
+        const response = await fetch(
+            `${apiUrl}/api/issues`,
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                },
+            }
+        )
+
+        const data = await response.json()
+
+        return data
+
+    } catch (error) {
+        return error
+    }
+}
