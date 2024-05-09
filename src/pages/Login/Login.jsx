@@ -44,8 +44,7 @@ export const Login = () => {
         }
         const responseApiLogin = await login(bodyCredentials)
         const decoded = decodeToken(responseApiLogin.token)
-
-        console.log(decoded);
+        
         // Si el inicio de sesión es exitoso y el usuario tiene rol user
         if (responseApiLogin.success && decoded.roleName === "user") {
             dispatch(loginRdx(

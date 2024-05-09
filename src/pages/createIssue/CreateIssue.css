@@ -1,6 +1,6 @@
 .create-issue-design {
     min-height: 92vh;
-    width: 100vw;
+    /* min-width: 100vw; */
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -10,10 +10,11 @@
 }
 
 .container-create-issue {
-    width: 110em;
-    height: 40em;
+    /* max-width: 90vw; */
+    /* height: 40em; */
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     background-color: white;
@@ -31,8 +32,8 @@
     margin: 1em;
 }
 .container-issue {
-    width: 40em;
-    height: 30em;
+    max-width: 80vw;
+    /* height: 30em; */
     display: flex;
     flex-direction: column;
     justify-content: center;
