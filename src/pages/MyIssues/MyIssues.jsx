@@ -55,6 +55,10 @@ export const MyIssues = () => {
         fetchMyIssues()
     }, [])
 
+    const handleRowSelected = ({selectedRows}) => {
+        setIssueSelected(selectedRows)
+        console.log(selectedRows);
+    }
 return (
     <>
         <div className="my-issues-dessign">
@@ -63,6 +67,7 @@ return (
                     columns={columns}
                     title="Mis incidencias"
                     data={MyIssues}
+                    onSelectedRowsChange={handleRowSelected}
                     selectableRows
                     selectableRowsSingle
                     pagination
