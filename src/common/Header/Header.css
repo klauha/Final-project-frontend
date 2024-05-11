@@ -5,14 +5,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: turquoise;
+    background-color: #40e0d0;
     /* margin-right: 15px; */
 }
 
 .header-logout {
     font-family: 'Poppins', sans-serif;
     font-weight: normal;
-    color: white;
+    color: black;
      padding: 40px;
 }
 

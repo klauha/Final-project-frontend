@@ -16,11 +16,17 @@
     justify-content: center;
     align-items: center;
     background-color: white;
-    box-shadow: 0 0 6px rgba(51, 64, 63, 0.6);
+    box-shadow: 0 0 10px rgba(29, 162, 151, 0.6);
 }
-h5 {
+h4 {
     font-family: 'Poppins', sans-serif;
     font-weight: normal;
     color: rgb(60, 43, 120);
     margin: 1em;
+}
+.logo-style-form{
+    height: 5em;
+    box-shadow: 0 0 6px rgba(51, 64, 63, 0.6);
+    margin-left: 20px;
+    object-fit: contain;
 }

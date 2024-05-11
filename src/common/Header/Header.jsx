@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutRdx, userData } from '../../app/slices/userSlice';
 import { CustomLink } from '../CustomLink/CustomLink';
+import logo from '/img/logo.png'
 
 
 
@@ -29,7 +30,7 @@ export const Header = () => {
     <>
       {
         rdxUser.token ? (<div className='headerDesign'>
-      
+        <img src={logo} alt="Logo" className='logo-style' />
           <div className="header-logout" >
           <CustomLink
                 title={(rdxUser.role != "user") ? rdxUser.role : ""}
@@ -47,6 +48,7 @@ export const Header = () => {
 
         ) : (
           <div className='headerDesign'>
+                <img src={logo} alt="Logo" className='logo-style' />
             <div className="links-container">
               <CustomLink
                 title={"Home"}

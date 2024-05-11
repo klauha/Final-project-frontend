@@ -1,24 +1,23 @@
-
 .ButtonDesign {
     height: 2.5em;
     width: 10em;
     padding: 5px;
     margin: 2em;
     border-radius: 0.5em;
-    color:white;
+    color: black;
     font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
-   background-color: turquoise;
+    background-color: turquoise;
     font-size: 15px;
     opacity: 1;
+    box-shadow: 0 0 6px rgba(51, 64, 63, 0.6);
 }
 
 .ButtonDesign:hover {
-
     cursor: pointer;
     transition: 0.2s;
     opacity: 0.8;
-     
+
 }

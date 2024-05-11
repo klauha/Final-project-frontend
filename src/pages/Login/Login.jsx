@@ -6,7 +6,6 @@ import { login } from '../../services/apiCalls'
 import { useNavigate } from 'react-router-dom'
 import { decodeToken } from 'react-jwt'
 import { Button } from '../../common/Button/Button'
-
 import { useDispatch } from "react-redux";
 import { loginRdx } from "../../app/slices/userSlice";
 
@@ -83,7 +82,8 @@ export const Login = () => {
         <>
             <div className='loginDesign'>
                 <div className="formLogin">
-                    <h5> Accede a tu cuenta</h5>
+       
+                    <h4> Accede a tu cuenta</h4>
                     <Input
                         className="inputDesign"
                         type="email"

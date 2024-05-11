@@ -20,8 +20,8 @@ export const MyIssues = () => {
         {
             name: "Fecha",
             selector: row => {
-                const date = new Date(row.issueDate);
-                return date.toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', })
+                const date = new Date(row.created_at);
+                return date.toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' })
             }
         },
         {
@@ -66,7 +66,7 @@ return (
                     selectableRows
                     selectableRowsSingle
                     pagination
-                    paginationPerPage={5}
+                    paginationPerPage={10}
                     fixedHeader
                 />
             </div>
