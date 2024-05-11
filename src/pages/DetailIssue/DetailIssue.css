@@ -27,7 +27,8 @@
     box-shadow: 0 0 6px rgba(51, 64, 63, 0.6);
     background-color: rgb(242, 247, 247);
     width: 80vw;
-    height: 35em;
+  
+ 
 }
 
 .container-fields {
@@ -96,6 +97,9 @@ label {
 .comment-description{
     width: 30em;
 
+}
+.comment-text {
+    overflow-wrap: break-word;
 }
 .comments{
     display: flex;

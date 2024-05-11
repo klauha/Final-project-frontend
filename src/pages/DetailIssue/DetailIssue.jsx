@@ -94,7 +94,7 @@ export const DetailIssue = ({ id }) => {
                                 </div>
                                 <div className="comment-description">
                                     <label>Comentario</label>
-                                    <p className='styled-p'>{comment.content}</p>
+                                    <p className='styled-p comment-text'>{comment.content}</p>
                                 </div>
                             </div>
                         ))
