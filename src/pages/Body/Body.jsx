@@ -12,7 +12,7 @@ export const Body = () => {
              <Route path="/register" element={<Register/>} />
              <Route path="/create-issue" element={<CreateIssue />} />
              <Route path="/my-issues" element={<MyIssues/>} />
-             <Route path="/detail/:id" element={<DetailIssue/>} />
+             <Route path="/issue/:id" element={<DetailIssue/>} />
         </Routes>
     )
 }

@@ -1,0 +1,21 @@
+
+.detailIssue{
+    display: flex;
+ 
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.detailIssue-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 3em;
+    border-radius: 1%;
+    box-shadow: 0 0 6px rgba(51, 64, 63, 0.6);
+    background-color: rgb(242, 247, 247);
+    width: 80vw;
+    height: 25em;
+}

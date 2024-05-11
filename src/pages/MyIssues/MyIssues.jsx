@@ -1,20 +1,25 @@
-import { useActionData } from "react-router-dom"
+
 import "./MyIssues.css"
 import { useEffect, useState } from "react"
 import DataTable from "react-data-table-component"
 import { useSelector } from "react-redux"
 import { userData } from "../../app/slices/userSlice"
 import { getMyIssues } from "../../services/apiCalls"
+import { useNavigate } from 'react-router-dom';
 
 
 export const MyIssues = () => {
     const rdxUser = useSelector(userData)
     const [MyIssues, setMyIssues] = useState([])
     const [issueSelected, setIssueSelected] = useState([])
-
+    const navigate = useNavigate();
+  
+    const handleDetailClick = (id) => {
+        navigate(`/issue/${id}`);
+    }
     const columns = [
         {
-            name: "Id",
+            name: "Referencia",
             selector: (row) => row.id
         },
         {
@@ -43,6 +48,14 @@ export const MyIssues = () => {
         {
             name: "Estado",
             selector: row => row.status
+        },
+        {
+            name: "Ver detalle",
+            cell: (row) => (
+                <button className="btn btn-primary" onClick={() => handleDetailClick(row.id)}>
+                    <i className="material-icons">visibility</i>
+                </button>
+            )
         }
     ]
 
@@ -67,8 +80,8 @@ return (
                     columns={columns}
                     title="Mis incidencias"
                     data={MyIssues}
-                    onSelectedRowsChange={handleRowSelected}
-                    selectableRows
+                    onRowClicked={row => handleDetailClick(row.id)}
+                    
                     selectableRowsSingle
                     pagination
                     paginationPerPage={10}
@@ -76,7 +89,7 @@ return (
                 />
             </div>
             <div className="container-issue-selected">
-                {/* <issueSelected issueSelected={issueSelected} /> */}
+                <issueSelected issueSelected={issueSelected} />
             </div>
         </div>
     </>
