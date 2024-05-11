@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import { getIssueById } from '../../services/apiCalls'
+import { getCommentsByIssue, getIssueById } from '../../services/apiCalls'
 import './DetailIssue.css'
 import React, { useEffect } from 'react'
 import { userData } from '../../app/slices/userSlice'
@@ -11,6 +11,7 @@ import { Input } from '../../common/Input/Input'
 export const DetailIssue = ({ id }) => {
     const rdxUser = useSelector(userData)
     const [issueSelected, setIssueSelected] = useState([])
+    const [comments, setComments] = useState([{}])
 
     const params = useParams()
 
@@ -22,10 +23,16 @@ export const DetailIssue = ({ id }) => {
         getIssue()
     }, [])
 
+    useEffect(() => {
+        const getComments = async () => {
+            const response = await getCommentsByIssue(rdxUser.token, params.id)
+            setComments(response.data.comments)
+        }
+        getComments()
+    }, [])
 
     return (
         <div className="detailIssue">
-
             <div className="detailIssue-container">
                 <div className="container1">
                 <div className="dateIssue container-fields">
@@ -61,6 +68,29 @@ export const DetailIssue = ({ id }) => {
                     <label>Descripción</label>
                     <p className='styled-p'>{issueSelected.description}</p>
                 </div>
+                </div>
+            </div>
+            <h3>Historial</h3>
+            <div className="comments-container">
+                <div className="comments">
+                    {
+                        comments.map((comment) => (
+                            <div className="comment">
+                                <div className="comment-user">
+                                    <label>Usuario</label>
+                                    <p className='styled-p'>{comment.user?.name}</p>
+                                </div>
+                                <div className="comment-date">
+                                    <label>Fecha</label>
+                                    <p className='styled-p'>{new Date(comment.created_at).toLocaleDateString('es-ES')}</p>
+                                </div>
+                                <div className="comment-description">
+                                    <label>Comentario</label>
+                                    <p className='styled-p'>{comment.content}</p>
+                                </div>
+                            </div>
+                        ))
+                    }
                 </div>
             </div>
         </div>

@@ -148,3 +148,24 @@ export const getIssueById = async (token, id) => {
         return error
     }
 }
+export const getCommentsByIssue = async (token, id) => {
+    try {
+        const response = await fetch(
+            `${apiUrl}/api/comments/${id}`,
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                },
+            }
+        )
+
+        const data = await response.json()
+
+        return data
+
+    } catch (error) {
+        return error
+    }
+}
