@@ -6,6 +6,7 @@ import { useSelector } from "react-redux"
 import { userData } from "../../app/slices/userSlice"
 import { getMyIssues } from "../../services/apiCalls"
 import { useNavigate } from 'react-router-dom';
+import { Button } from "../../common/Button/Button"
 
 
 export const MyIssues = () => {
@@ -13,7 +14,7 @@ export const MyIssues = () => {
     const [MyIssues, setMyIssues] = useState([])
     const [issueSelected, setIssueSelected] = useState([])
     const navigate = useNavigate();
-  
+
     const handleDetailClick = (id) => {
         navigate(`/issue/${id}`);
     }
@@ -61,38 +62,50 @@ export const MyIssues = () => {
 
     useEffect(() => {
         const fetchMyIssues = async () => {
-            const response = await getMyIssues(rdxUser.token) 
+            const response = await getMyIssues(rdxUser.token)
             console.log(response)
             setMyIssues(response.data)
         }
         fetchMyIssues()
     }, [])
 
-    const handleRowSelected = ({selectedRows}) => {
+    const handleRowSelected = ({ selectedRows }) => {
         setIssueSelected(selectedRows)
         console.log(selectedRows);
     }
-return (
-    <>
-        <div className="my-issues-dessign">
-            <div className="table-my-issues">
-                <DataTable
-                    columns={columns}
-                    title="Mis incidencias"
-                    data={MyIssues}
-                    onRowClicked={row => handleDetailClick(row.id)}
-                    
-                    selectableRowsSingle
-                    pagination
-                    paginationPerPage={10}
-                    fixedHeader
-                />
+
+    const navigateToNewIssue = () => {
+        navigate("/create-issue")
+    }
+    return (
+        <>
+         
+                <div className="button-container">
+                    <Button
+                        title={"Nueva incidencia"}
+                        className="ButtonDesign"
+                        onClick={navigateToNewIssue}
+                    />
+                </div>
+                <div className="my-issues-dessign">
+                <div className="table-my-issues">
+                    <DataTable
+                        columns={columns}
+                        title="Mis incidencias"
+                        data={MyIssues}
+                        onRowClicked={row => handleDetailClick(row.id)}
+                        selectableRowsSingle
+                        pagination
+                        paginationPerPage={10}
+                        fixedHeader
+                    />
+                </div>
+                <div className="container-issue-selected">
+                    <issueSelected issueSelected={issueSelected} />
+                </div>
+
             </div>
-            <div className="container-issue-selected">
-                <issueSelected issueSelected={issueSelected} />
-            </div>
-        </div>
-    </>
-)
-      
+        </>
+    )
+
 }
