@@ -61,7 +61,8 @@ export const Login = () => {
                 {
                     token: responseApiLogin.token,
                     userId: decoded.userId,
-                    role: decoded.roleName
+                    role: decoded.roleName,
+                    name: decoded.username
                 }
             ))
 

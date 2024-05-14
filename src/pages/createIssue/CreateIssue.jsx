@@ -8,7 +8,6 @@ import { createIssue, getDepartament, getIssueType } from '../../services/apiCal
 import { useNavigate } from 'react-router-dom'
 
 export const CreateIssue = () => {
-
     const rdxUser = useSelector(userData)
     const navigate = useNavigate();
     const [departments, setDepartments] = useState([])
@@ -21,8 +20,6 @@ export const CreateIssue = () => {
             description: '',
         }
     )
-
- 
 
     useEffect(() => {
         const fetchDepartament = async () => {
@@ -50,62 +47,74 @@ export const CreateIssue = () => {
         ))
     }
 
-    const postIssue = async () => { 
-        const response = await createIssue(rdxUser.token, bodyDataIssue) 
+    const postIssue = async () => {
+        const response = await createIssue(rdxUser.token, bodyDataIssue)
         navigate('/my-issues');
-    
-   
     }
 
+    const navigateToMyIssues = () => {
+        console.log(111111);
+        navigate("/my-issues")
+    }
     return (
-        <div className='create-issue-design'>
-            <div className="container-create-issue">
-                <div className='container-issue-1 container-issue'>
-                    <div className="form-group">
-                        <label>Departamento</label>
-                        <select name="departmentId" id="" onChange={inputHandler}>
-                            {
-                                departments.map((department) => (
-                                    <option key={department.id} value={department.id}>{department.name}</option>
-                                ))
-                            }
-                        </select>
-                    </div>
-                    <div className="form-group">
-                        <label>Tipo de Incidencia</label>
-                        <select name="issueTypeId" id="" onChange={inputHandler}>
-                            {
-                                issueTypes.map((issueType) => (
-                                    <option key={issueType.id} value={issueType.id}>{issueType.name}</option>
-                                ))
-                            }
-                        </select>
-                    </div>
-                </div>
-                <div className='container-issue-2 container-issue'>
-                    <div className="form-group">
-                        <label>Titulo</label>
-                        <Input
-                            type="text"
-                            className="input-issue-design"
-                            name="title"
-                            onChangeFunction={(e) => inputHandler(e)} />
-                    </div>
-                    <div className="form-group">
-                        <label>Descripción</label>
-                        <textarea
-                            className="input-issue-design"
-                            name="description"
-                            onChange={(e) => inputHandler(e)} />
-                    </div>
-                </div>
+        <>
+            <div className="button-container">
                 <Button
-                title={"Crear Incidencia"}
-                className="ButtonDesign"
-                onClick={postIssue}
-            />
+                    title={"Mis incidencias"}
+                    className="ButtonDesign"
+                    onClick={navigateToMyIssues}
+                />
             </div>
+            {/* <div className='create-issue-design'> */}
+                <div className="container-create-issue">
+                    <div className='container-issue-1 container-issue'>
+                        <div className="form-group">
+                            <label>Departamento</label>
+                            <select name="departmentId" id="" onChange={inputHandler}>
+                                {
+                                    departments.map((department) => (
+                                        <option key={department.id} value={department.id}>{department.name}</option>
+                                    ))
+                                }
+                            </select>
+                        </div>
+                        <div className="form-group">
+                            <label>Tipo de Incidencia</label>
+                            <select name="issueTypeId" id="" onChange={inputHandler}>
+                                {
+                                    issueTypes.map((issueType) => (
+                                        <option key={issueType.id} value={issueType.id}>{issueType.name}</option>
+                                    ))
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div className='container-issue-2 container-issue'>
+                        <div className="form-group">
+                            <label>Titulo</label>
+                            <Input
+                                type="text"
+                                className="input-issue-design"
+                                name="title"
+                                onChangeFunction={(e) => inputHandler(e)} />
+                        </div>
+                        <div className="form-group">
+                            <label>Descripción</label>
+                            <textarea
+                                className="input-issue-design"
+                                name="description"
+                                onChange={(e) => inputHandler(e)} />
+                        </div>
+                    </div>
+                    <Button
+                        title={"Crear Incidencia"}
+                        className="ButtonDesign"
+                        onClick={postIssue}
+                    />
+                </div>
 
-        </div>
+            {/* </div> */}
+        </>
     )
+
 }

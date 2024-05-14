@@ -11,6 +11,7 @@ import logo from '/img/logo.png'
 export const Header = () => {
   //Instancia de conexion a modo lectura
   const rdxUser = useSelector(userData);
+  console.log(rdxUser, " credenciales pasaporte");
 
   //Instancia de conexion a modo escritura
   const dispatch = useDispatch();
@@ -33,7 +34,7 @@ export const Header = () => {
         <img src={logo} alt="Logo" className='logo-style' />
           <div className="header-logout" >
           <CustomLink
-                title={(rdxUser.role != "user") ? rdxUser.role : ""}
+                title={ rdxUser.name }
                 path={"/admin/users"}
               />
             {/* {(rdxUser.role != "user") ? rdxUser.role : ""} */}

@@ -79,15 +79,14 @@ export const MyIssues = () => {
     }
     return (
         <>
-         
-                <div className="button-container">
-                    <Button
-                        title={"Nueva incidencia"}
-                        className="ButtonDesign"
-                        onClick={navigateToNewIssue}
-                    />
-                </div>
-                <div className="my-issues-dessign">
+            <div className="button-container">
+                <Button
+                    title={"Nueva incidencia"}
+                    className="ButtonDesign"
+                    onClick={navigateToNewIssue}
+                />
+            </div>
+            <div className="my-issues-dessign">
                 <div className="table-my-issues">
                     <DataTable
                         columns={columns}
