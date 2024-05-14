@@ -169,3 +169,26 @@ export const getCommentsByIssue = async (token, id) => {
         return error
     }
 }
+
+export const createComment = async (token, bodyDataComment) => {  
+    try {
+        const response = await fetch(
+            `${apiUrl}/api/comments`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                },
+                body: JSON.stringify(bodyDataComment),
+            }
+        )
+
+        const data = await response.json()
+
+        return data
+
+    } catch (error) {
+        return error
+    }
+}      

@@ -54,7 +54,7 @@ export const Login = () => {
                 }
             ))
 
-            navigate("/home")
+            navigate("/my-issues")
         } else {
             // Si el inicio de sesión es exitoso y el usuario es admin o superadmin
             dispatch(loginRdx(
@@ -65,7 +65,7 @@ export const Login = () => {
                 }
             ))
 
-            navigate("/home")
+            navigate("/my-issues")
         }
     }
 

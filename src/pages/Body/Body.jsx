@@ -4,7 +4,7 @@ import { Register } from "../Register/Register"
 import { CreateIssue } from "../createIssue/CreateIssue"
 import { MyIssues } from "../MyIssues/MyIssues"
 import { DetailIssue } from "../DetailIssue/DetailIssue"
-import { CreateComment } from "../CreateComment/CreateComment"
+
 
 export const Body = () => {
     return (
@@ -14,7 +14,6 @@ export const Body = () => {
              <Route path="/create-issue" element={<CreateIssue />} />
              <Route path="/my-issues" element={<MyIssues/>} />
              <Route path="/issue/:id" element={<DetailIssue/>} />
-            <Route path = "/create-comment/:id" element = {<CreateComment/>} />
         </Routes>
     )
 }

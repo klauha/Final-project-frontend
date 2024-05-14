@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import { getCommentsByIssue, getIssueById } from '../../services/apiCalls'
+import { createComment, getCommentsByIssue, getIssueById } from '../../services/apiCalls'
 import './DetailIssue.css'
 import React, { useEffect } from 'react'
 import { userData } from '../../app/slices/userSlice'
@@ -9,12 +9,18 @@ import { Input } from '../../common/Input/Input'
 import { Button } from '../../common/Button/Button'
 
 
+
 export const DetailIssue = ({ id }) => {
+    const params = useParams()
+
     const rdxUser = useSelector(userData)
     const [issueSelected, setIssueSelected] = useState([])
     const [comments, setComments] = useState([{}])
-
-    const params = useParams()
+    const [bodyDataComment, setBodyDataComment] = useState(
+        {  issueId: params.id,
+            comment: '',
+        },
+    )     
 
     useEffect(() => {
         const getIssue = async () => {
@@ -32,6 +38,21 @@ export const DetailIssue = ({ id }) => {
         getComments()
     }, [])
 
+    const inputHandler = (e) => {
+        setBodyDataComment((prevState) => (
+            {
+                ...prevState,
+                [e.target.name]: e.target.value
+            }
+        ))
+    }
+
+    const postComment = async () => {
+        // console.log(bodyDataComment);
+        const response = await createComment(rdxUser.token, bodyDataComment)
+        setComments([...comments, response.data])
+    }
+
     return (
         <div className="detailIssue">
             <div className="detailIssue-container">
@@ -46,7 +67,7 @@ export const DetailIssue = ({ id }) => {
                     </div>
                     <div className="detailIssue-status container-fields">
                         <label>Estado</label>
-                        <p className='styled-p' style={{ backgroundColor: issueSelected.status === 'CERRADA' ? 'red' : 'green' }}>{issueSelected.status}</p>
+                        <p className='styled-p' style={{ backgroundColor: issueSelected.status === 'CERRADA' ? 'red' : issueSelected.status === 'EN TRÁMITE' ? 'yellow' : 'green' }}>{issueSelected.status}</p>
                     </div>
                 </div>
                 <div className="container2">
@@ -71,41 +92,55 @@ export const DetailIssue = ({ id }) => {
                     </div>
                 </div>
             </div>
-            <h3>Historial</h3>
+            <div className="newComment-container">
+                <textarea
+                    className="textAreaDesign"
+                    name="comment"
+                    onChange={inputHandler}
+                />
+                <Button
+                    title={"Nuevo Comentario"}
+                    className="ButtonDesign"
+                    onClick={postComment}
+                />
+            </div>
+            {/* <h3>Historial</h3> */}
             <div className="comments-container">
 
                 <div className="comments">
-                    {
-                        comments
-                        .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+                    <div className="comment-header">
+                        <div className="comment-user">
+                            <label>Usuario</label>
+                        </div>
+                        <div className="comment-date">
+                            <label>Fecha</label>
+                        </div>
+                        <div className="comment-time">
+                            <label>Hora</label>
+                        </div>
+                        <div className="comment-content">
+                            <label>Comentario</label>
+                        </div>
+                    </div>
+                    {comments.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
                         .map((comment, index) => (
                             <div className="comment" key={index}>
-                                <div className="comment-user">
-                                    <label>Usuario</label>
-                                    <p className='styled-p'>{comment.user?.name}</p>
-                                </div>
+                                {/* <div className="comment-user">
+                                <p className='styled-p'>{comment.user ? comment.user.name : 'Unknown'}</p>
+                                </div> */}
                                 <div className="comment-date">
-                                    <label>Fecha</label>
                                     <p className='styled-p'>{new Date(comment.created_at).toLocaleDateString('es-ES')}</p>
                                 </div>
                                 <div className="comment-time">
-                                    <label>Hora</label>
                                     <p className='styled-p'>{new Date(comment.created_at).toLocaleTimeString('es-ES')}</p>
                                 </div>
                                 <div className="comment-description">
-                                    <label>Comentario</label>
                                     <p className='styled-p comment-text'>{comment.content}</p>
                                 </div>
                             </div>
                         ))
                     }
                 </div>
-                <Button
-                    title={"Nuevo Comentario"}
-                    className="ButtonDesign"
-                    
-
-                />
             </div>
         </div>
     )
