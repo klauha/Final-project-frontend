@@ -6,6 +6,7 @@
     justify-content: space-between;
     align-items: center;
     background-color: #40e0d0;
+    box-shadow: 0 0 10px rgba(29, 162, 151, 0.6);
     /* margin-right: 15px; */
 }
 
@@ -14,8 +15,7 @@
     font-weight: normal;
     color: black;
      padding: 40px;
-     display:flex;
-     
+   
 }
 
 .header-logout:hover {

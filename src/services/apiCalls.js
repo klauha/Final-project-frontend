@@ -192,3 +192,47 @@ export const createComment = async (token, bodyDataComment) => {
         return error
     }
 }      
+
+export const getProfile = async (token) => {    
+    try {
+        const response = await fetch(
+            `${apiUrl}/api/users/profile`,
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                },
+            }
+        )
+
+        const data = await response.json()
+
+        return data
+
+    } catch (error) {
+        return error
+    }
+}
+export const editProfiles = async (dataToUpdate, token) => {
+    try {
+        const response = await fetch(
+            `${apiUrl}/api/users/profile`,
+            {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                },
+                body: JSON.stringify(dataToUpdate),
+            }
+        )
+
+        const data = await response.json()
+
+        return data
+
+    } catch (error) {
+        return error
+    }
+}
