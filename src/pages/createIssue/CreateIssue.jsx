@@ -5,11 +5,14 @@ import { Button } from '../../common/Button/Button'
 import { Input } from '../../common/Input/Input'
 import { userData } from '../../app/slices/userSlice'
 import { createIssue, getDepartament, getIssueType } from '../../services/apiCalls'
+import { useNavigate } from 'react-router-dom'
 
 export const CreateIssue = () => {
 
     const rdxUser = useSelector(userData)
-
+    const navigate = useNavigate();
+    const [departments, setDepartments] = useState([])
+    const [issueTypes, setIssueTypes] = useState([])
     const [bodyDataIssue, setBodyDataIssue] = useState(
         {
             title: '',
@@ -19,8 +22,7 @@ export const CreateIssue = () => {
         }
     )
 
-    const [departments, setDepartments] = useState([])
-    const [issueTypes, setIssueTypes] = useState([])
+ 
 
     useEffect(() => {
         const fetchDepartament = async () => {
@@ -50,7 +52,8 @@ export const CreateIssue = () => {
 
     const postIssue = async () => { 
         const response = await createIssue(rdxUser.token, bodyDataIssue) 
-        // 
+        navigate('/my-issues');
+    
    
     }
 
@@ -96,12 +99,13 @@ export const CreateIssue = () => {
                             onChange={(e) => inputHandler(e)} />
                     </div>
                 </div>
-            </div>
-            <Button
+                <Button
                 title={"Crear Incidencia"}
                 className="ButtonDesign"
                 onClick={postIssue}
             />
+            </div>
+
         </div>
     )
 }
