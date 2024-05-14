@@ -35,7 +35,7 @@ export const Header = () => {
           <div className="header-logout" >
           <CustomLink
                 title={ rdxUser.name }
-                path={"/admin/users"}
+                path={"/profile"}
               />
             {/* {(rdxUser.role != "user") ? rdxUser.role : ""} */}
             {/* path={"/admin/users"} */}

@@ -8,105 +8,94 @@ import { useSelector } from 'react-redux'
 import { userData } from '../../app/slices/userSlice'
 
 export const Profile = () => {
-  const [userProfile, setUserProfile] = useState({})
-  const [hadleInputDisable, setHandleInputDisable] = useState(true)
-  const rdxUser = useSelector(userData)
-  const navigate = useNavigate()
+    const [userProfile, setUserProfile] = useState({})
+    const [hadleInputDisable, setHandleInputDisable] = useState(true)
+    const rdxUser = useSelector(userData)
+    const navigate = useNavigate()
 
 
 
-  useEffect(() => {
-    const getUserProfile = async () => {
-      const result = await getProfile(rdxUser.token)
-console.log(result.data);
-      setUserProfile(result.data);
+    useEffect(() => {
+        const getUserProfile = async () => {
+            const result = await getProfile(rdxUser.token)
+            setUserProfile(result.data);
+        }
+        getUserProfile()
+    }, [])
+
+
+    const editData = () => {
+        setHandleInputDisable(!hadleInputDisable)
     }
-    getUserProfile()
-  }, [])
 
+    const editProfileUser = async () => {
+        try {
 
-  const editData = () => {
-    setHandleInputDisable(!hadleInputDisable)
-  }
+            const dataToUpdate = {
+                name: userProfile.name,
+                surname: userProfile.surname,
+            }
+            const updateUserProfile = await editProfiles(dataToUpdate, rdxUser.token)
+        } catch (error) {
 
-  const editProfileUser = async () => {
-    try {
-console.log(1);
-      const dataToUpdate = {
-        firstName: userProfile.first_name,
-        lastName: userProfile.last_name,
-      }
-      console.log(dataToUpdate);
-     
-      const updateUserProfile = await editProfiles(dataToUpdate, rdxUser.token)
-    } catch (error) {
-
-    } finally {
-      setHandleInputDisable(!hadleInputDisable)
+        } finally {
+            setHandleInputDisable(!hadleInputDisable)
+        }
     }
-  }
 
-  const inputHandler = (e) => {
-    setUserProfile((prevState) => (
-      {
-        ...prevState,
-        [e.target.name]: e.target.value
-      }
-    ))
-  }
+    const inputHandler = (e) => {
+        setUserProfile((prevState) => (
+            {
+                ...prevState,
+                [e.target.name]: e.target.value
+            }
+        ))
+    }
 
-  return (
-    <>
-      <div className='profileDesign'>
-        <div className='dataUser'>
-          
-          <Input
-            className="inputProfileDesign"
-            type="text"
-            name="first_name"
-            value={userProfile.firstName || ""}
-            disabled={hadleInputDisable}
-            onChangeFunction={inputHandler}
-          ></Input>
-          <Input
-            className="inputProfileDesign"
-            type="text"
-            name="last_name"
-            value={userProfile?.lastName ?? ""}
-            disabled={hadleInputDisable}
-            onChangeFunction={(e) => inputHandler(e)}
-          ></Input>
-           <Input
-            className="inputProfileDesign"
-            type="text"
-            name="nickname"
-            value={userProfile.nickname || ""}
-            disabled={true}
-          ></Input>
-          
-          <Input
-            className="inputProfileDesign"
-            type="text"
-            name="email"
-            value={userProfile.email || ""}
-            disabled={true}
-          ></Input>
-            
-          <div className="buttons">
-            <Button
-              title={"Editar"}
-              className="ButtonDesign"
-              onClick={editData}
-            />
-            <Button
-              title={"Actualizar"}
-              className="ButtonDesign"
-              onClick={editProfileUser}
-            />
-          </div>
+    return (
+        <>
+            <div className='profileDesign'>
+                <div className='dataUser'>
+                    <Input
+                        className="inputProfileDesign"
+                        type="text"
+                        name="name"
+                        value={userProfile.name || ""}
+                        disabled={hadleInputDisable}
+                        onChangeFunction={(e) => inputHandler(e)}
+                    ></Input>
+                    <Input
+                        className="inputProfileDesign"
+                        type="text"
+                        name="surname"
+                        value={userProfile.surname ?? ""}
+                        disabled={hadleInputDisable}
+                        onChangeFunction={(e) => inputHandler(e)}
+                    ></Input>
 
-        </div>
-      </div>
-    </>
-  )
+                    <Input
+                        className="inputProfileDesign"
+                        type="text"
+                        name="email"
+                        value={userProfile.email || ""}
+                        disabled={true}
+                    ></Input>
+
+                    <div className="buttons">
+                        <Button
+                            title={"Editar"}
+                            className="ButtonDesign"
+                            onClick={editData}
+                        />
+                        <Button
+                            title={"Aceptar"}
+                            className="ButtonDesign"
+                            onClick={editProfileUser}
+                        />
+                    </div>
+
+                </div>
+            </div>
+        </>
+    )
 }

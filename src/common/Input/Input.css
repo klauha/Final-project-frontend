@@ -6,14 +6,14 @@
     outline: none;
     margin: 2em;
     border-radius: 0.5em;
-    box-shadow: 0 0 6px rgba(51, 64, 63, 0.6);
+    box-shadow: 0 0 10px rgba(29, 162, 151, 0.6);
    
 }
 
 .inputProfileDesign {
     height: 1.5em;
     width: 15em;
-    border: 0.1em solid #080707cb;
+    box-shadow: 0 0 10px rgba(29, 162, 151, 0.6);
     border-radius: 0.5em;
     margin: 1em;
     padding: 0.5em;
@@ -33,9 +33,7 @@
     border-radius: 0.5em;
     margin: 1em;
     padding: 0.5em;
-    border-color: rgb(60, 43, 120);
-   
-
+    box-shadow: 0 0 10px rgba(29, 162, 151, 0.6);
 }
 
 .inputDesign:focus {
@@ -50,5 +48,5 @@
     outline: none;
     margin: 2em;
     border-radius: 0.5em;
-    box-shadow: 0 0 6px rgba(51, 64, 63, 0.6);
+    box-shadow: 0 0 10px rgba(29, 162, 151, 0.6);
 }
