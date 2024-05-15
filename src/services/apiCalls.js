@@ -278,3 +278,25 @@ export const getUsers = async (token) => {
         return error
     }
 }
+
+export const getUserById = async (token, id) => {    
+    try {
+        const response = await fetch(
+            `${apiUrl}/api/users/${id}`,
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                },
+            }
+        )
+
+        const data = await response.json()
+
+        return data
+
+    } catch (error) {
+        return error
+    }
+}
