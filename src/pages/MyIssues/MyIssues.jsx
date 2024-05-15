@@ -1,4 +1,3 @@
-
 import "./MyIssues.css"
 import { useEffect, useState } from "react"
 import DataTable from "react-data-table-component"
@@ -97,14 +96,22 @@ export const MyIssues = () => {
                         pagination
                         paginationPerPage={10}
                         fixedHeader
+                        conditionalRowStyles={[
+                            {
+                              when: row => true, 
+                              style: {
+                                '&:hover': {
+                                  backgroundColor: '#b1efe9', 
+                                },
+                              },
+                            },
+                          ]}
                     />
                 </div>
                 <div className="container-issue-selected">
                     <issueSelected issueSelected={issueSelected} />
                 </div>
-
             </div>
         </>
     )
-
 }

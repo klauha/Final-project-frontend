@@ -279,10 +279,32 @@ export const getUsers = async (token) => {
     }
 }
 
-export const getUserById = async (token, id) => {    
+export const getUserById = async (id,token) => {    
     try {
+        console.log(id);
         const response = await fetch(
             `${apiUrl}/api/users/${id}`,
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                },
+            }
+        )
+
+        const data = await response.json()
+
+        return data
+
+    } catch (error) {
+        return error
+    }
+}
+export const getAllIssuesByUser = async (token, id) => {
+    try {
+        const response = await fetch(
+            `${apiUrl}/api/issues/user/${id}`,
             {
                 method: "GET",
                 headers: {

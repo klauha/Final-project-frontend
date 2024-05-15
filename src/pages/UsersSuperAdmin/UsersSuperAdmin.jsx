@@ -19,6 +19,10 @@ export const UsersSuperAdmin = () => {
 
   const columns = [
     {
+      name: "ID",
+      selector: row => row.id
+    },
+    {
       name: "Nombre",
       selector: row => row.name
     },
@@ -31,12 +35,12 @@ export const UsersSuperAdmin = () => {
       selector: row => row.email
     },
     {
-      name: "Fecha de creación",
+      name: "Fecha",
       selector: row => {
-        const date = new Date(row.createdAt)
+        const date = new Date(row.created_at);
         return date.toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' })
       }
-    }
+    },
   ]
 
   useEffect(() => {
@@ -52,18 +56,18 @@ export const UsersSuperAdmin = () => {
     setUsersSelected(selectedRows)
   }
 
-  const deleteUser = async () => {
-    try {
-      const userToDeleteSelected = usersSelected[0].id
-      console.log(`Deleting user with ID: ${userToDeleteSelected}`)
-      const userToDelete = await deleteUserbyAdmin(userToDeleteSelected, rdxUser.token)
-      const updateTableUsers = await getUsers(rdxUser.token)
-      setUsersData(updateTableUsers.data)
-      setUsersSelected([])
-    } catch (error) {
-      console.error(error)
-    }
-  }
+  // const deleteUser = async () => {
+  //   try {
+  //     const userToDeleteSelected = usersSelected[0].id
+  //     console.log(`Deleting user with ID: ${userToDeleteSelected}`)
+  //     const userToDelete = await deleteUserbyAdmin(userToDeleteSelected, rdxUser.token)
+  //     const updateTableUsers = await getUsers(rdxUser.token)
+  //     setUsersData(updateTableUsers.data)
+  //     setUsersSelected([])
+  //   } catch (error) {
+  //     console.error(error)
+  //   }
+  // }
 
   return (
     <>
@@ -79,8 +83,18 @@ export const UsersSuperAdmin = () => {
             pagination
             paginationPerPage={10}
             fixedHeader
+            noDataComponent={<div>No hay usuarios para mostrar</div>}
+            conditionalRowStyles={[
+              {
+                when: row => true, 
+                style: {
+                  '&:hover': {
+                    backgroundColor: '#b1efe9', 
+                  },
+                },
+              },
+            ]}
           />
-          <button onClick={deleteUser}>Eliminar usuario</button>
         </div>
       </div>
     </>
