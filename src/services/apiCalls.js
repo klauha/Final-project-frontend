@@ -236,7 +236,7 @@ export const editProfiles = async (dataToUpdate, token) => {
         return error
     }
 }
-export const getUsers = async () => {  
+export const getUsers = async (token) => {  
     try {
         const response = await fetch(
             `${apiUrl}/api/users`,
@@ -244,6 +244,7 @@ export const getUsers = async () => {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
                 },
             }
         )
@@ -256,7 +257,7 @@ export const getUsers = async () => {
         return error
     }
 }
- export const deleteUserbyAdmin = async (id) => {
+ export const deleteUserbyAdmin = async (id,token) => {
     try {
         const response = await fetch(
             `${apiUrl}/api/users/${id}`,
@@ -264,6 +265,7 @@ export const getUsers = async () => {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
                 },
             }
         )
