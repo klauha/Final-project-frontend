@@ -58,62 +58,56 @@ export const CreateIssue = () => {
     }
     return (
         <>
-            <div className="button-container">
-                <Button
-                    title={"Mis incidencias"}
-                    className="ButtonDesign"
-                    onClick={navigateToMyIssues}
-                />
-            </div>
-            {/* <div className='create-issue-design'> */}
+            <div className='create-issue-design'>
+                <div className="button-container">
+                    <Button
+                        title={"Mis incidencias"}
+                        className="ButtonDesign"
+                        onClick={navigateToMyIssues}
+                    />
+                </div>
+
                 <div className="container-create-issue">
-                    <div className='container-issue-1 container-issue'>
-                        <div className="form-group">
-                            <label>Departamento</label>
-                            <select name="departmentId" id="" onChange={inputHandler}>
-                                {
-                                    departments.map((department) => (
-                                        <option key={department.id} value={department.id}>{department.name}</option>
-                                    ))
-                                }
-                            </select>
-                        </div>
-                        <div className="form-group">
-                            <label>Tipo de Incidencia</label>
-                            <select name="issueTypeId" id="" onChange={inputHandler}>
-                                {
-                                    issueTypes.map((issueType) => (
-                                        <option key={issueType.id} value={issueType.id}>{issueType.name}</option>
-                                    ))
-                                }
-                            </select>
-                        </div>
-                    </div>
-                    <div className='container-issue-2 container-issue'>
-                        <div className="form-group">
-                            <label>Titulo</label>
-                            <Input
-                                type="text"
-                                className="input-issue-design"
-                                name="title"
-                                onChangeFunction={(e) => inputHandler(e)} />
-                        </div>
-                        <div className="form-group">
-                            <label>Descripción</label>
-                            <textarea
-                                className="input-issue-design"
-                                name="description"
-                                onChange={(e) => inputHandler(e)} />
-                        </div>
-                    </div>
+
+                    <label>Departamento</label>
+                    <select name="departmentId"  className= "select-style" id="" onChange={inputHandler}>
+                        {
+                            departments.map((department) => (
+                                <option key={department.id} value={department.id}>{department.name}</option>
+                            ))
+                        }
+                    </select>
+
+                    <label>Tipo de Incidencia</label>
+                    <select name="issueTypeId" className= "select-style" id="" onChange={inputHandler}>
+                        {
+                            issueTypes.map((issueType) => (
+                                <option key={issueType.id} value={issueType.id}>{issueType.name}</option>
+                            ))
+                        }
+                    </select>
+
+                    <label>Titulo</label>
+                    <Input
+                        type="text"
+                        className="input-issue-design"
+                        name="title"
+                        onChangeFunction={(e) => inputHandler(e)} />
+
+                    <label>Descripción</label>
+                    <textarea
+                        className="input-issue-design"
+                        name="description"
+                        onChange={(e) => inputHandler(e)} />
+
                     <Button
                         title={"Crear Incidencia"}
                         className="ButtonDesign"
                         onClick={postIssue}
                     />
                 </div>
+            </div>
 
-            {/* </div> */}
         </>
     )
 

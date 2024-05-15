@@ -31,14 +31,13 @@ export const Header = () => {
     <>
       {
         rdxUser.token ? (<div className='headerDesign'>
-        <img src={logo} alt="Logo" className='logo-style' />
+          <img src={logo} alt="Logo" className='logo-style' />
           <div className="header-logout" >
-          <CustomLink
-                title={ rdxUser.name }
-                path={"/profile"}
-              />
-            {/* {(rdxUser.role != "user") ? rdxUser.role : ""} */}
-            {/* path={"/admin/users"} */}
+            <CustomLink
+              title={rdxUser.name}
+              path={"/profile"}
+            />
+        
 
           </div>
 
@@ -49,12 +48,8 @@ export const Header = () => {
 
         ) : (
           <div className='headerDesign'>
-                <img src={logo} alt="Logo" className='logo-style' />
+            <img src={logo} alt="Logo" className='logo-style' />
             <div className="links-container">
-              <CustomLink
-                title={"Home"}
-                path={"/"}
-              />
 
               <CustomLink
                 title={"Registro"}

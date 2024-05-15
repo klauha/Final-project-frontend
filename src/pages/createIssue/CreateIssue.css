@@ -18,7 +18,7 @@
     background-color: white;
     border-radius: 1%;
     box-shadow: 0 0 10px rgba(29, 162, 151, 0.6);
-    background-color: rgb(242, 247, 247); 
+  
 }
 
 .form-group {
@@ -36,7 +36,16 @@
     justify-content: center;
     align-items: center;
     margin: 1em;
-    /* border-radius: 1%;
-    box-shadow: 0 0 6px rgba(51, 64, 63, 0.6);
-    background-color: rgb(242, 247, 247); */
+   
+}
+.select-style {
+    height: 2.5em;
+    width: 20em;
+    background-color:transparent;
+    font-size: 18px;
+    font-family: poppins;
+    margin: 1em;
+    padding: 0.5em;
+    border-radius: 0.5em;
+    box-shadow: 0 0 10px rgba(29, 162, 151, 0.6);
 }

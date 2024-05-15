@@ -6,6 +6,8 @@ import { MyIssues } from "../MyIssues/MyIssues"
 import { DetailIssue } from "../DetailIssue/DetailIssue"
 import { Profile } from "../Profile/Profile"
 import { HomeSuperAdmin } from "../HomeSuperAdmin/HomeSuperAdmin"
+import { UsersSuperAdmin } from "../UsersSuperAdmin/UsersSuperAdmin"
+import { HomeUserAdmin } from "../HomeUser/HomeUser"
 
 
 export const Body = () => {
@@ -13,11 +15,13 @@ export const Body = () => {
         <Routes>
              <Route path="/login" element={<Login/>} />
              <Route path="/register" element={<Register/>} />
+             <Route path="/" element={<HomeUserAdmin/>} />
              <Route path="/create-issue" element={<CreateIssue />} />
              <Route path="/my-issues" element={<MyIssues/>} />
              <Route path="/issue/:id" element={<DetailIssue/>} />
              <Route path="/profile" element={<Profile/>} />
-             <Route path="/home" element={<HomeSuperAdmin/>} />
+             <Route path="/admin/home" element={<HomeSuperAdmin/>} />
+             <Route path="/admin/users" element={<UsersSuperAdmin/>} />
         </Routes>
     )
 }

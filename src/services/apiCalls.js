@@ -236,3 +236,43 @@ export const editProfiles = async (dataToUpdate, token) => {
         return error
     }
 }
+export const getUsers = async () => {  
+    try {
+        const response = await fetch(
+            `${apiUrl}/api/users`,
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }
+        )
+
+        const data = await response.json()
+
+        return data
+
+    } catch (error) {
+        return error
+    }
+}
+ export const deleteUserbyAdmin = async (id) => {
+    try {
+        const response = await fetch(
+            `${apiUrl}/api/users/${id}`,
+            {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }
+        )
+
+        const data = await response.json()
+
+        return data
+
+    } catch (error) {
+        return error
+    }
+}
