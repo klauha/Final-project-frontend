@@ -47,16 +47,23 @@ export const MyIssues = () => {
         },
         {
             name: "Estado",
-            selector: row => row.status
-        },
-        {
-            name: "Ver detalle",
-            cell: (row) => (
-                <button className="btn btn-primary" onClick={() => handleDetailClick(row.id)}>
-                    <i className="material-icons">visibility</i>
-                </button>
-            )
+            cell: row => {
+                let color;
+                switch (row.status) {
+                    case 'ABIERTA':
+                        color = 'green';
+                        break;
+                    case 'EN TRÁMITE':
+                        color = 'yellow';
+                        break;
+                    case 'CERRADA':
+                        color = 'red';
+                        break;
+                }
+                return <span style={{ backgroundColor: color, color: 'white' }}>{row.status}</span>;
+            }
         }
+        
     ]
 
     useEffect(() => {

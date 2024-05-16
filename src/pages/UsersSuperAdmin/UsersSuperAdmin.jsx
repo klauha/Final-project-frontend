@@ -12,7 +12,7 @@ export const UsersSuperAdmin = () => {
   const [usersSelected, setUsersSelected] = useState([])
   const rdxUser = useSelector(userData)
   const navigate = useNavigate()
-
+  const [search, setSearch] = useState('')
   const handleDetailClick = (id) => {
     navigate(`/admin/users/${id}`)
   }
@@ -35,12 +35,11 @@ export const UsersSuperAdmin = () => {
       selector: row => row.email
     },
     {
-      name: "Fecha",
-      selector: row => {
-        const date = new Date(row.created_at);
-        return date.toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' })
-      }
+      name: "Rol",
+      selector: row => row.role?.title
     },
+    
+  
   ]
 
   useEffect(() => {
@@ -56,28 +55,30 @@ export const UsersSuperAdmin = () => {
     setUsersSelected(selectedRows)
   }
 
-  // const deleteUser = async () => {
-  //   try {
-  //     const userToDeleteSelected = usersSelected[0].id
-  //     console.log(`Deleting user with ID: ${userToDeleteSelected}`)
-  //     const userToDelete = await deleteUserbyAdmin(userToDeleteSelected, rdxUser.token)
-  //     const updateTableUsers = await getUsers(rdxUser.token)
-  //     setUsersData(updateTableUsers.data)
-  //     setUsersSelected([])
-  //   } catch (error) {
-  //     console.error(error)
-  //   }
-  // }
+
+  const filteredData = usersData.filter(item =>
+    columns.some(column =>
+      column.selector(item)?.toString().toLowerCase().includes(search.toLowerCase())
+    )
+  )
 
   return (
     <>
       <div className='adminDesign'>
         <div className="tableUser">
+          <div className="search-input-container">
+        <input
+            type="text"
+            placeholder="Buscar..."
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+          />
+          </div>
           <DataTable
             className='table'
             title="Usuarios"
             columns={columns}
-            data={usersData}
+            data={filteredData}
             onRowClicked={row => handleDetailClick(row.id)}
             selectableRowsSingle
             pagination

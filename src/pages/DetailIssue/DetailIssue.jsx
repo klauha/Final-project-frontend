@@ -48,9 +48,10 @@ export const DetailIssue = ({ id }) => {
     }
 
     const postComment = async () => {
-        // console.log(bodyDataComment);
+
         const response = await createComment(rdxUser.token, bodyDataComment)
         setComments([...comments, response.data])
+        setBodyDataComment(prevState => ({ ...prevState, comment: '' }))
     }
 
     return (
@@ -96,6 +97,7 @@ export const DetailIssue = ({ id }) => {
                 <textarea
                     className="textAreaDesign"
                     name="comment"
+                    value={bodyDataComment.comment}
                     onChange={inputHandler}
                 />
                 <Button
