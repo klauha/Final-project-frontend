@@ -343,3 +343,25 @@ export const getIssueByIdForAdmin = async (token, id) => {
         return error
     }
 }
+export const createCommentAsAdmin = async (token, bodyDataComment) => {
+    try {
+        const response = await fetch(
+            `${apiUrl}/api/comments/${bodyDataComment.issueId}`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                },
+                body: JSON.stringify(bodyDataComment),
+            }
+        )
+
+        const data = await response.json()
+
+        return data
+
+    } catch (error) {
+        return error
+    }
+}

@@ -32,7 +32,7 @@ export const DetailUser = ({ id }) => {
             setUserIssues(response.data)
         }
         getIssues()
-    })
+    }, [])
 
     const columns = [
         {
@@ -94,7 +94,7 @@ export const DetailUser = ({ id }) => {
         }
     }
     const handleDetailClick = (id) => {
-        navigate(`/admin/issue/:id`)
+        navigate(`/admin/issue/${id}`)
     }
     // const handleRowChange = (selectedRows) => {
     //     setUserIssues(selectedRows)

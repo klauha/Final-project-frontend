@@ -13,6 +13,7 @@ export const UsersSuperAdmin = () => {
   const rdxUser = useSelector(userData)
   const navigate = useNavigate()
   const [search, setSearch] = useState('')
+  
   const handleDetailClick = (id) => {
     navigate(`/admin/users/${id}`)
   }
