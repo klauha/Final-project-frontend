@@ -7,7 +7,7 @@ import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { Input } from '../../common/Input/Input'
 import { Button } from '../../common/Button/Button'
-import DataTable from 'react-data-table-component'
+import DataTable, { createTheme } from 'react-data-table-component'
 
 
 
@@ -33,7 +33,18 @@ export const DetailUser = ({ id }) => {
         }
         getIssues()
     }, [])
-
+    createTheme(
+        'klauha',
+        {
+          background: {
+            default: 'transparent',
+          },
+          text: {
+            primary: 'black',
+          },
+        },
+        'dark',
+      )
     const columns = [
         {
             name: "Referencia",
@@ -96,30 +107,31 @@ export const DetailUser = ({ id }) => {
     const handleDetailClick = (id) => {
         navigate(`/admin/issue/${id}`)
     }
-    // const handleRowChange = (selectedRows) => {
-    //     setUserIssues(selectedRows)
-    // }
-
+   
     return (
         <>
             <div className="detailUser">
                 <div className="detailUser-container">
                     <div className="container-data">
-                        <div className="container-fields">
-                            <label>Nombre</label>
-                            <p className='styled-p'> {userSelected.name}</p>
+                        <div className="container-data1">
+                            <div>
+                                <label>Nombre</label>
+                                <p className='styled-p'> {userSelected.name}</p>
+                            </div>
+                            <div>
+                                <label>Email</label>
+                                <p className='styled-p'>{userSelected.email}</p>
+                            </div>
                         </div>
-                        <div className="container-fields">
-                            <label>Apellidos</label>
-                            <p className='styled-p'>{userSelected.surname}</p>
-                        </div>
-                        <div className="container-fields">
-                            <label>Email</label>
-                            <p className='styled-p'>{userSelected.email}</p>
-                        </div>
-                        <div className="container-fields">
-                            <label>Rol</label>
-                            <p className='styled-p'>{userSelected.role?.title}</p>
+                        <div className="container-data2">
+                            <div>
+                                <label>Apellidos</label>
+                                <p className='styled-p'>{userSelected.surname}</p>
+                            </div>
+                            <div>
+                                <label>Rol</label>
+                                <p className='styled-p'>{userSelected.role?.title}</p>
+                            </div>
                         </div>
                         <div className="container-button">
                             <Button
@@ -127,13 +139,13 @@ export const DetailUser = ({ id }) => {
                                 className="ButtonDesign"
                                 onClick={deleteUser}
                             />
-
                         </div>
                     </div>
                 </div>
                 <div className="my-issues-dessign">
                     <div className="table-my-issues">
                         <DataTable
+                            theme="klauha"
                             columns={columns}
                             title="Historial de incidencias"
                             data={userIssues}
@@ -153,6 +165,13 @@ export const DetailUser = ({ id }) => {
                                     },
                                 },
                             ]}
+                            customStyles={{
+                                pagination: {
+                                    style: {
+                                        color: 'black', 
+                                    },
+                                },
+                            }}
                         />
                     </div>
                 </div>

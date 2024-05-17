@@ -86,18 +86,18 @@ export const DetailIssueSuperAdmin = ({ id }) => {
                     </div>
                 </div>
                 <div className="container2-issue">
-                <div className="detailIssue-status container-fields">
+                    <div className="detailIssue-status container-fields">
                         <label>Estado</label>
-                        <p className='styled-p' style={{ backgroundColor: issueSelected.status === 'CERRADA' ? 'red' : issueSelected.status === 'EN TRÁMITE' ? 'yellow' : 'green',color: 'white' }}>{issueSelected.status}</p>
+                        <p className='styled-p' style={{ backgroundColor: issueSelected.status === 'CERRADA' ? 'red' : issueSelected.status === 'EN TRÁMITE' ? 'yellow' : 'green', color: 'white' }}>{issueSelected.status}</p>
                     </div>
-                <div className="detailIssue-title container-fields">
-                    <label>Titulo</label>
-                    <p className='styled-p'>{issueSelected.title}</p>
-                </div>
-                <div className="detailIssue-description container-fields">
-                    <label>Descripción</label>
-                    <p className='styled-p'>{issueSelected.description}</p>
-                </div>
+                    <div className="detailIssue-title container-fields">
+                        <label>Titulo</label>
+                        <p className='styled-p'>{issueSelected.title}</p>
+                    </div>
+                    <div className="detailIssue-description container-fields">
+                        <label>Descripción</label>
+                        <p className='styled-p'>{issueSelected.description}</p>
+                    </div>
                 </div>
             </div>
             <div className="newComment-container">
@@ -115,37 +115,16 @@ export const DetailIssueSuperAdmin = ({ id }) => {
             </div>
             <div className="comments-container">
                 <div className="comments">
-                    {/* <div className="comment-header">
-                        <div className="comment-user">
-                            <label>Usuario</label>
-                        </div>
-                        <div className="comment-date">
-                            <label>Fecha</label>
-                        </div>
-                        <div className="comment-time">
-                            <label>Hora</label>
-                        </div>
-                        <div className="comment-content">
-                            <label>Comentario</label>
-                        </div>
-                    </div> */}
+
                     {comments.sort((a, b) => new Date(b?.created_at) - new Date(a?.created_at))
                         .map((comment, index) => (
-                            comment && <div className="comment" key={index}>
-                                <div className="comment-user">
-                                    <p className='styled-p'>{comment.user?.name}</p>
-                                </div>
-                                <div className="comment-date">
-                                    <p className='styled-p'>{new Date(comment.created_at).toLocaleDateString('es-ES')}</p>
-                                </div>
-                                <div className="comment-time">
-                                    <p className='styled-p'>{new Date(comment.created_at).toLocaleTimeString('es-ES')}</p>
-                                </div>
-                                <div className="comment-description">
-                                    <p className='styled-p comment-text'>{comment.content}</p>
-                                </div>
+                            comment &&
+                            <div className="comment-user" key={index}>
+                                 <p className="align-right">{new Date(comment.created_at).toLocaleDateString('es-ES')}
+                                    {" - " + new Date(comment.created_at).toLocaleTimeString('es-ES')}</p>
+                                <p><label>Usuario: </label>{comment.user?.name}</p>
+                                <p><label>Comentario: </label>{comment.content}</p>
                             </div>
-
                         ))
                     }
                 </div>
