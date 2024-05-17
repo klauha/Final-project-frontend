@@ -14,7 +14,7 @@ export const UsersSuperAdmin = () => {
   const navigate = useNavigate()
   const [search, setSearch] = useState('')
   const handleDetailClick = (id) => {
-    navigate(`/admin/users/${id}`)
+    navigate(`/admin/issue/${id}`)
   }
 
   const columns = [
@@ -38,8 +38,6 @@ export const UsersSuperAdmin = () => {
       name: "Rol",
       selector: row => row.role?.title
     },
-    
-  
   ]
 
   useEffect(() => {
@@ -54,7 +52,6 @@ export const UsersSuperAdmin = () => {
   const handleRowChange = ({ selectedRows }) => {
     setUsersSelected(selectedRows)
   }
-
 
   const filteredData = usersData.filter(item =>
     columns.some(column =>

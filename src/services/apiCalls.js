@@ -322,3 +322,24 @@ export const getAllIssuesByUser = async (token, id) => {
         return error
     }
 }
+export const getIssueByIdForAdmin = async (token, id) => {
+    try {
+        const response = await fetch(
+            `${apiUrl}/api/issues/admin/${id}`,
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                },
+            }
+        )
+
+        const data = await response.json()
+
+        return data
+
+    } catch (error) {
+        return error
+    }
+}

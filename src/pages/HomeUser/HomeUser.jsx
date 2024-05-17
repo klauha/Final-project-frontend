@@ -4,7 +4,7 @@ import IconIssue from "../../../public/img/issues.png"
 import React from 'react'
 import { useNavigate } from "react-router-dom"
 
-export const HomeUserAdmin = () => {
+export const HomeUser = () => {
     const navigate = useNavigate()
     const navigateToNewIssue = () => { navigate("/create-issue") }
     const navigateToMyIssues = () => { navigate("/my-issues") }

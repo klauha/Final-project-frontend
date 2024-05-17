@@ -44,7 +44,7 @@ export const Login = () => {
         const responseApiLogin = await login(bodyCredentials)
         const decoded = decodeToken(responseApiLogin.token)
         
-        // Si el inicio de sesión es exitoso y el usuario tiene rol user
+        
         if (responseApiLogin.success && decoded.roleName === "user") {
             dispatch(loginRdx(
                 {
@@ -54,7 +54,7 @@ export const Login = () => {
                 }
             ))
 
-            navigate("/my-issues")
+            navigate("/")
         } else {
             // Si el inicio de sesión es exitoso y el usuario es admin o superadmin
             dispatch(loginRdx(
@@ -66,7 +66,7 @@ export const Login = () => {
                 }
             ))
 
-            navigate("/my-issues")
+            navigate("/admin")
         }
     }
 

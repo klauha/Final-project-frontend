@@ -12,7 +12,6 @@ import { Button } from '../../common/Button/Button'
 
 export const DetailIssue = ({ id }) => {
     const params = useParams()
-
     const rdxUser = useSelector(userData)
     const [issueSelected, setIssueSelected] = useState([])
     const [comments, setComments] = useState([{}])

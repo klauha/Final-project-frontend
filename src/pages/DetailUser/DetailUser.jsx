@@ -4,7 +4,7 @@ import './DetailUser.css'
 import { useEffect } from 'react'
 import { userData } from '../../app/slices/userSlice'
 import { useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Input } from '../../common/Input/Input'
 import { Button } from '../../common/Button/Button'
 import DataTable from 'react-data-table-component'
@@ -13,10 +13,11 @@ import DataTable from 'react-data-table-component'
 
 export const DetailUser = ({ id }) => {
     const params = useParams()
-
     const rdxUser = useSelector(userData)
+    const navigate = useNavigate()
     const [userSelected, setUserSelected] = useState([{}])
     const [userIssues, setUserIssues] = useState([])
+
 
     useEffect(() => {
         const getUser = async () => {
@@ -92,7 +93,13 @@ export const DetailUser = ({ id }) => {
             }
         }
     }
-   
+    const handleDetailClick = (id) => {
+        navigate(`/issue/${id}`)
+    }
+    // const handleRowChange = (selectedRows) => {
+    //     setUserIssues(selectedRows)
+    // }
+
     return (
         <>
             <div className="detailUser">
