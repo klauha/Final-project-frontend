@@ -25,10 +25,12 @@
     text-decoration-color:aqua;
 }
 .logo-style {
-    height:100%;
+    margin-top: 5px;
+    max-height: 60px;
     margin-left: 20px;
      object-fit: contain;
 }
+
 .links-container {
     display: flex;
     justify-content: flex-end;

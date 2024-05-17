@@ -5,39 +5,41 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logoutRdx, userData } from '../../app/slices/userSlice';
 import { CustomLink } from '../CustomLink/CustomLink';
 import logo from '/img/logo.png'
-
+import { Link } from 'react-router-dom';
 
 
 export const Header = () => {
-  //Instancia de conexion a modo lectura
+
   const rdxUser = useSelector(userData);
-  console.log(rdxUser, " credenciales pasaporte");
-
-  //Instancia de conexion a modo escritura
   const dispatch = useDispatch();
-  // useEffect(() => {
-  //   console.log(rdxUser, " credenciales pasaporte");
-  // }, [rdxUser]);
-
   const navigate = useNavigate()
-
   const handleLogout = () => {
-    // Eliminamos el token del store y actualizamos el estado local
+
     dispatch(logoutRdx({ token: "" }))
     navigate("/login")
   }
+
+  let logoLinkPath;
+  if (rdxUser.role === 'user') {
+    logoLinkPath = '/';
+  } else {
+    logoLinkPath = '/admin';
+  }
+
 
   return (
     <>
       {
         rdxUser.token ? (<div className='headerDesign'>
-          <img src={logo} alt="Logo" className='logo-style' />
+        <Link to={logoLinkPath}>
+            <img src={logo} alt="Logo" className='logo-style' />
+          </Link>
           <div className="header-logout" >
             <CustomLink
               title={rdxUser.name}
               path={"/profile"}
             />
-        
+
 
           </div>
 

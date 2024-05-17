@@ -14,7 +14,7 @@ export const UsersSuperAdmin = () => {
   const navigate = useNavigate()
   const [search, setSearch] = useState('')
   const handleDetailClick = (id) => {
-    navigate(`/admin/issue/${id}`)
+    navigate(`/admin/users/${id}`)
   }
 
   const columns = [

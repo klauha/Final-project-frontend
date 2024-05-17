@@ -24,8 +24,9 @@ export const Body = () => {
              <Route path="/profile" element={<Profile/>} />
              <Route path="/admin" element={<HomeSuperAdmin/>} />
              <Route path="/admin/users" element={<UsersSuperAdmin/>} />
-             <Route path="admin/users/:id" element={<DetailUser/>} />
-             <Route path="admin/issue/:id" element={<DetailIssueSuperAdmin/>} />
+             <Route path="/admin/users/:id" element={<DetailUser/>} />
+             {/* <Rote path= "/admin/issues"element={<IssuesUser/>}/> */}
+             <Route path="/admin/issue/:id" element={<DetailIssueSuperAdmin/>} />
         </Routes>
     )
 }

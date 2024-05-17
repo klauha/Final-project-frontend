@@ -94,7 +94,7 @@ export const DetailUser = ({ id }) => {
         }
     }
     const handleDetailClick = (id) => {
-        navigate(`/issue/${id}`)
+        navigate(`/admin/issue/:id`)
     }
     // const handleRowChange = (selectedRows) => {
     //     setUserIssues(selectedRows)

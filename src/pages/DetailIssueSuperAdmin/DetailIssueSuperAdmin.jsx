@@ -16,11 +16,11 @@ export const DetailIssueSuperAdmin = ({ id }) => {
     const rdxUser = useSelector(userData)
     const [issueSelected, setIssueSelected] = useState([])
     const [comments, setComments] = useState([{}])
-    // const [bodyDataComment, setBodyDataComment] = useState(
-    //     {  issueId: params.id,
-    //         comment: '',
-    //     },
-    // )     
+    const [bodyDataComment, setBodyDataComment] = useState(
+        {  issueId: params.id,
+            comment: '',
+        },
+    )     
 
     useEffect(() => {
         const getIssue = async () => {
@@ -30,13 +30,13 @@ export const DetailIssueSuperAdmin = ({ id }) => {
         getIssue()
     }, [])
 
-    // useEffect(() => {
-    //     const getComments = async () => {
-    //         const response = await getCommentsByIssue(rdxUser.token, params.id)
-    //         setComments(response.data.comments)
-    //     }
-    //     getComments()
-    // }, [])
+    useEffect(() => {
+        const getComments = async () => {
+            const response = await getCommentsByIssue(rdxUser.token, params.id)
+            setComments(response.data?.comments)
+        }
+        getComments()
+    }, [])
 
     const inputHandler = (e) => {
         setBodyDataComment((prevState) => (
