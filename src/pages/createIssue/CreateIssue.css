@@ -1,6 +1,4 @@
 .create-issue-design {
-    min-height: 92vh;
-    /* min-width: 100vw; */
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -9,25 +7,16 @@
 }
 
 .container-create-issue {
-    max-width: 80vw;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    border-radius: 1%;
-    box-shadow: 0 0 10px rgba(29, 162, 151, 0.6);
-  
-}
-
-.form-group {
+    width: 90vw;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    margin: 1em;
+    background-color: rgb(242, 247, 247);
+    border-radius: 1%;
+    box-shadow: 0 0 10px rgba(29, 162, 151, 0.6);
 }
+
 .container-issue {
     max-width: 80vw;
     /* height: 30em; */
@@ -36,16 +25,52 @@
     justify-content: center;
     align-items: center;
     margin: 1em;
-   
 }
 .select-style {
     height: 2.5em;
-    width: 20em;
-    background-color:transparent;
+    width: 80vw;
+    background-color:white;
     font-size: 18px;
     font-family: poppins;
     margin: 1em;
     padding: 0.5em;
     border-radius: 0.5em;
     box-shadow: 0 0 10px rgba(29, 162, 151, 0.6);
+}
+.input-title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.input-title-issue{
+    height: 2.5em;
+    width: 80vw;
+    background-color:white;
+    font-size: 18px;
+    font-family: poppins;
+    margin: 1em;
+    padding: 0.5em;
+    border-radius: 0.5em;
+    box-shadow: 0 0 10px rgba(29, 162, 151, 0.6);
+}
+
+.button-my-issues{
+    /* display: flex;
+    justify-content: flex-end; */
+    /* width: 100%; */
+    /* padding-right: 6em; */
+ }
+
+.input-description{
+    height: 8em;
+    width: 80vw;
+    max-width: 90vw;
+    background-color:white;
+    font-size: 18px;
+    font-family: poppins;
+    margin: 1em;
+    padding: 0.5em;
+    border-radius: 0.5em;
+    box-shadow: 0 0 10px rgba(29, 162, 151, 0.6);
+
 }

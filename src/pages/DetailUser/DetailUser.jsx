@@ -36,15 +36,15 @@ export const DetailUser = ({ id }) => {
     createTheme(
         'klauha',
         {
-          background: {
-            default: 'transparent',
-          },
-          text: {
-            primary: 'black',
-          },
+            background: {
+                default: 'transparent',
+            },
+            text: {
+                primary: 'black',
+            },
         },
         'dark',
-      )
+    )
     const columns = [
         {
             name: "Referencia",
@@ -107,31 +107,31 @@ export const DetailUser = ({ id }) => {
     const handleDetailClick = (id) => {
         navigate(`/admin/issue/${id}`)
     }
-   
+
     return (
         <>
             <div className="detailUser">
                 <div className="detailUser-container">
-                    <div className="container-data">
+                    {/* <div className="container-data"> */}
                         <div className="container-data1">
-                            <div>
                                 <label>Nombre</label>
+                           
                                 <p className='styled-p'> {userSelected.name}</p>
-                            </div>
-                            <div>
+                         
                                 <label>Email</label>
+                           
                                 <p className='styled-p'>{userSelected.email}</p>
-                            </div>
+                    
                         </div>
                         <div className="container-data2">
-                            <div>
                                 <label>Apellidos</label>
+                 
                                 <p className='styled-p'>{userSelected.surname}</p>
-                            </div>
-                            <div>
+                     
                                 <label>Rol</label>
+                          
                                 <p className='styled-p'>{userSelected.role?.title}</p>
-                            </div>
+                         
                         </div>
                         <div className="container-button">
                             <Button
@@ -140,7 +140,7 @@ export const DetailUser = ({ id }) => {
                                 onClick={deleteUser}
                             />
                         </div>
-                    </div>
+                    {/* </div> */}
                 </div>
                 <div className="my-issues-dessign">
                     <div className="table-my-issues">
@@ -168,7 +168,7 @@ export const DetailUser = ({ id }) => {
                             customStyles={{
                                 pagination: {
                                     style: {
-                                        color: 'black', 
+                                        color: 'black',
                                     },
                                 },
                             }}

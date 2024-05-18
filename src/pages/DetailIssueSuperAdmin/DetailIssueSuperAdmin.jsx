@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import { createComment, createCommentAsAdmin, getCommentsByIssue, getIssueById, getIssueByIdForAdmin } from '../../services/apiCalls'
+import { createComment, createCommentAsAdmin, getCommentsByIssue, getIssueById, getIssueByIdForAdmin, updateIssueStatus } from '../../services/apiCalls'
 import './DetailIssueSuperAdmin.css'
 import React, { useEffect } from 'react'
 import { userData } from '../../app/slices/userSlice'
@@ -14,7 +14,7 @@ export const DetailIssueSuperAdmin = ({ id }) => {
     const params = useParams()
 
     const rdxUser = useSelector(userData)
-    const [issueSelected, setIssueSelected] = useState([])
+    const [issueSelected, setIssueSelected] = useState({})
     const [comments, setComments] = useState([{}])
     const [bodyDataComment, setBodyDataComment] = useState(
         {
@@ -26,8 +26,10 @@ export const DetailIssueSuperAdmin = ({ id }) => {
     useEffect(() => {
         const getIssue = async () => {
             const response = await getIssueByIdForAdmin(rdxUser.token, params.id)
+            console.log(response.data);
             setIssueSelected(response.data)
         }
+
         getIssue()
     }, [])
 
@@ -48,55 +50,79 @@ export const DetailIssueSuperAdmin = ({ id }) => {
         ))
     }
 
-    // const postComment = async () => {
-    //     const response = await createCommentAsAdmin(rdxUser.token, bodyDataComment)
-    //     setComments([...comments, response.data])
-    //     setBodyDataComment(prevState => ({ ...prevState, comment: '' }))
-    // }
     const postComment = async () => {
-        try {
-            const response = await createCommentAsAdmin(rdxUser.token, bodyDataComment)
-            if (response.data) {
-                setComments([...comments, response.data])
-                setBodyDataComment(prevState => ({ ...prevState, comment: '' }))
-            } else {
-                console.error('La respuesta del servidor no incluye datos')
+        const response = await createCommentAsAdmin(rdxUser.token, bodyDataComment)
+        setComments([...comments, response.data])
+        setBodyDataComment(prevState => ({ ...prevState, comment: '' }))
+    }
+    const updateIssueStatusHandler = async (issueId, issueStatus) => {
+        try {   
+            const response = await updateIssueStatus(rdxUser.token, issueId, issueStatus)
+
+            if(issueStatus === 'CERRADA') {
+                setIssueSelected({
+                    ...issueSelected,
+                    status: 'CERRADA'
+                })
             }
+
+            if(issueStatus === 'ABIERTA') {
+                setIssueSelected({
+                    ...issueSelected,
+                    status: 'ABIERTA'
+                })
+            }
+            
         } catch (error) {
-            console.error('Error al crear el comentario:', error)
+            console.error(error)
         }
     }
 
     return (
         <div className="detailIssue">
-            <div className="detailIssue-container">
-                <div className="container1-issue">
-                    <div className="detailIssue-user container-fields">
-                        <label>Usuario</label>
-                        <p className='styled-p'>{issueSelected.user?.name}</p>
-                    </div>
-                    <div className="detailIssue-department container-fields">
-                        <label>Departamento</label>
-                        <p className='styled-p'>{issueSelected.department?.name}</p>
-                    </div>
+             <div className="button-my-issues">
+          
+                    <Button
+                        title={issueSelected.status === "ABIERTA" ? " Cerrar incidencia": "Abrir incidencia"}
+                        className="ButtonDesign"
+                        onClick={issueSelected.status === "ABIERTA" ? () => updateIssueStatusHandler(issueSelected.id, 'CERRADA') :() => updateIssueStatusHandler(issueSelected.id, 'ABIERTA')}
 
-                    <div className="detailIssue-issueType container-fields">
-                        <label>Tipo de incidencia</label>
-                        <p className='styled-p'>{issueSelected.issue_type?.name}</p>
-                    </div>
+                    />
+             
                 </div>
-                <div className="container2-issue">
-                    <div className="detailIssue-status container-fields">
-                        <label>Estado</label>
-                        <p className='styled-p' style={{ backgroundColor: issueSelected.status === 'CERRADA' ? 'red' : issueSelected.status === 'EN TRÁMITE' ? 'yellow' : 'green', color: 'white' }}>{issueSelected.status}</p>
+            <div className="detailIssue-container">
+           
+
+                <div className="container-data">
+                    <div className="container-data1">
+                        <div >
+                            <label className="left-align">Usuario</label>
+                            <p className='styled-p'>{issueSelected.user?.name}</p>
+                        </div>
+                        <div >
+                            <label>Departamento</label>
+                            <p className='styled-p'>{issueSelected.department?.name}</p>
+                        </div>
+                        <div >
+                            <label>Titulo</label>
+                            <p className='styled-p'>{issueSelected.title}</p>
+                        </div>
+
                     </div>
-                    <div className="detailIssue-title container-fields">
-                        <label>Titulo</label>
-                        <p className='styled-p'>{issueSelected.title}</p>
-                    </div>
-                    <div className="detailIssue-description container-fields">
-                        <label>Descripción</label>
-                        <p className='styled-p'>{issueSelected.description}</p>
+                    <div className="container-data2">
+                        <div >
+                            <label>Estado</label>
+                            <p className='styled-p' style={{ backgroundColor: issueSelected.status === 'CERRADA' ? 'red' : issueSelected.status === 'EN TRÁMITE' ? 'yellow' : 'green', color: 'white' }}>{issueSelected.status}</p>
+                        </div>
+                        <div>
+                            <label>Tipo de incidencia</label>
+                            <p className='styled-p'>{issueSelected.issue_type?.name}</p>
+                        </div>
+
+                        <div >
+                            <label>Descripción</label>
+                            <p className='styled-p'>{issueSelected.description}</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -115,12 +141,11 @@ export const DetailIssueSuperAdmin = ({ id }) => {
             </div>
             <div className="comments-container">
                 <div className="comments">
-
                     {comments.sort((a, b) => new Date(b?.created_at) - new Date(a?.created_at))
                         .map((comment, index) => (
                             comment &&
                             <div className="comment-user" key={index}>
-                                 <p className="align-right">{new Date(comment.created_at).toLocaleDateString('es-ES')}
+                                <p className="align-right">{new Date(comment.created_at).toLocaleDateString('es-ES')}
                                     {" - " + new Date(comment.created_at).toLocaleTimeString('es-ES')}</p>
                                 <p><label>Usuario: </label>{comment.user?.name}</p>
                                 <p><label>Comentario: </label>{comment.content}</p>

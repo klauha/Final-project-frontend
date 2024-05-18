@@ -1,5 +1,27 @@
+.users-superadmin {
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+
+}
+
+.tableUser {
+  max-width: 90vw;
+  width: 100%;
+  margin-top: 2em;
+  border-radius: 1%;
+  box-shadow: 0 0 10px rgba(29, 162, 151, 0.6);
+  background-color: rgb(242, 247, 247);
+  padding: 1em;
+  overflow-x: auto;
+}
+
+
+
 .search-input-container {
-    text-align: right;
-    margin-right: 100px;
-    margin-top: 50px;
-  }
+  text-align: right;
+  margin-right: 100px;
+  margin-top: 50px;
+}

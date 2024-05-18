@@ -53,13 +53,12 @@ export const CreateIssue = () => {
     }
 
     const navigateToMyIssues = () => {
-        console.log(111111);
         navigate("/my-issues")
     }
     return (
         <>
             <div className='create-issue-design'>
-                <div className="button-container">
+                <div className="button-my-issues">
                     <Button
                         title={"Mis incidencias"}
                         className="ButtonDesign"
@@ -68,38 +67,45 @@ export const CreateIssue = () => {
                 </div>
 
                 <div className="container-create-issue">
+                    <div className="container-form">
+                        <label>Departamento</label>
+                        <div className="input-field">
+                            <select name="departmentId" className="select-style" id="" onChange={inputHandler}>
+                                {
+                                    departments.map((department) => (
+                                        <option key={department.id} value={department.id}>{department.name}</option>
+                                    ))
+                                }
+                            </select>
+                        </div>
+                        <label>Tipo de Incidencia</label>
+                        <div className="">
+                            <select name="issueTypeId" className="select-style" id="" onChange={inputHandler}>
+                                {
+                                    issueTypes.map((issueType) => (
+                                        <option key={issueType.id} value={issueType.id}>{issueType.name}</option>
+                                    ))
+                                }
+                            </select>
+                        </div>
 
-                    <label>Departamento</label>
-                    <select name="departmentId"  className= "select-style" id="" onChange={inputHandler}>
-                        {
-                            departments.map((department) => (
-                                <option key={department.id} value={department.id}>{department.name}</option>
-                            ))
-                        }
-                    </select>
-
-                    <label>Tipo de Incidencia</label>
-                    <select name="issueTypeId" className= "select-style" id="" onChange={inputHandler}>
-                        {
-                            issueTypes.map((issueType) => (
-                                <option key={issueType.id} value={issueType.id}>{issueType.name}</option>
-                            ))
-                        }
-                    </select>
-
+                    </div>
                     <label>Titulo</label>
-                    <Input
-                        type="text"
-                        className="input-issue-design"
-                        name="title"
-                        onChangeFunction={(e) => inputHandler(e)} />
-
+                    <div className="">
+                        <Input
+                            type="text"
+                            className="input-title-issue"
+                            name="title"
+                            onChangeFunction={(e) => inputHandler(e)} />
+                    </div>
                     <label>Descripción</label>
-                    <textarea
-                        className="input-issue-design"
-                        name="description"
-                        onChange={(e) => inputHandler(e)} />
+                    <div className="">
+                        <textarea
+                            className="input-description"
+                            name="description"
+                            onChange={(e) => inputHandler(e)} />
 
+                    </div>
                     <Button
                         title={"Crear Incidencia"}
                         className="ButtonDesign"

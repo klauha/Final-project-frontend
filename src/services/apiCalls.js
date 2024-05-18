@@ -365,3 +365,20 @@ export const createCommentAsAdmin = async (token, bodyDataComment) => {
         return error
     }
 }
+export const updateIssueStatus = async (token, id, issueStatus) => {
+    const response = await fetch(
+        `${apiUrl}/api/issues/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ issueStatus }) 
+    })
+
+    if (!response.ok) {
+        throw new Error('Error updating issue status');
+    }
+
+    return await response.json()
+}

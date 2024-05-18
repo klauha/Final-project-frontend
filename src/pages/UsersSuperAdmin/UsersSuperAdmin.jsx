@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import "./UsersSuperAdmin.css"
 import { deleteUserbyAdmin, getUsers } from '../../services/apiCalls'
-import DataTable from 'react-data-table-component'
+import DataTable, { createTheme } from 'react-data-table-component'
 import { useNavigate } from 'react-router-dom'
 import { Header } from "../../common/Header/Header";
 import { useSelector } from 'react-redux'
@@ -17,6 +17,7 @@ export const UsersSuperAdmin = () => {
   const handleDetailClick = (id) => {
     navigate(`/admin/users/${id}`)
   }
+  
 
   const columns = [
     {
@@ -40,6 +41,18 @@ export const UsersSuperAdmin = () => {
       selector: row => row.role?.title
     },
   ]
+  createTheme(
+    'klauha',
+    {
+        background: {
+            default: 'transparent',
+        },
+        text: {
+            primary: 'black',
+        },
+    },
+    'dark',
+)
 
   useEffect(() => {
     const getUserByAdmin = async () => {
@@ -62,7 +75,7 @@ export const UsersSuperAdmin = () => {
 
   return (
     <>
-      <div className='adminDesign'>
+      <div className='users-superadmin'>
         <div className="tableUser">
           <div className="search-input-container">
         <input
@@ -73,6 +86,7 @@ export const UsersSuperAdmin = () => {
           />
           </div>
           <DataTable
+            theme="klauha"
             className='table'
             title="Usuarios"
             columns={columns}
@@ -91,6 +105,7 @@ export const UsersSuperAdmin = () => {
                     backgroundColor: '#b1efe9', 
                   },
                 },
+                
               },
             ]}
           />
