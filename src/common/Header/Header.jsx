@@ -14,6 +14,7 @@ export const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate()
   const handleLogout = () => {
+    console.log(rdxUser);
 
     dispatch(logoutRdx({ token: "" }))
     navigate("/login")
@@ -25,7 +26,6 @@ export const Header = () => {
   } else {
     logoLinkPath = '/admin';
   }
-
 
   return (
     <>

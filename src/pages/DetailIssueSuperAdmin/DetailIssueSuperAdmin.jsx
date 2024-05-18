@@ -95,34 +95,33 @@ export const DetailIssueSuperAdmin = ({ id }) => {
 
                 <div className="container-data">
                     <div className="container-data1">
-                        <div >
                             <label className="left-align">Usuario</label>
+                        {/* <div > */}
                             <p className='styled-p'>{issueSelected.user?.name}</p>
-                        </div>
-                        <div >
+                        {/* </div> */}
                             <label>Departamento</label>
+                        {/* <div > */}
                             <p className='styled-p'>{issueSelected.department?.name}</p>
-                        </div>
-                        <div >
+                        {/* </div> */}
                             <label>Titulo</label>
+                        {/* <div > */}
                             <p className='styled-p'>{issueSelected.title}</p>
-                        </div>
+                        {/* </div> */}
 
-                    </div>
-                    <div className="container-data2">
-                        <div >
+                    {/* </div>
+                    <div className="container-data2"> */}
                             <label>Estado</label>
+                        {/* <div > */}
                             <p className='styled-p' style={{ backgroundColor: issueSelected.status === 'CERRADA' ? 'red' : issueSelected.status === 'EN TRÁMITE' ? 'yellow' : 'green', color: 'white' }}>{issueSelected.status}</p>
-                        </div>
-                        <div>
+                        {/* </div> */}
                             <label>Tipo de incidencia</label>
+                        {/* <div> */}
                             <p className='styled-p'>{issueSelected.issue_type?.name}</p>
-                        </div>
-
-                        <div >
+                        {/* </div> */}
                             <label>Descripción</label>
+                        {/* <div > */}
                             <p className='styled-p'>{issueSelected.description}</p>
-                        </div>
+                        {/* </div> */}
                     </div>
                 </div>
             </div>
@@ -133,12 +132,12 @@ export const DetailIssueSuperAdmin = ({ id }) => {
                     value={bodyDataComment.comment}
                     onChange={inputHandler}
                 />
-                <Button
-                    title={"Nuevo Comentario"}
+            </div>
+            <Button
+                    title={"Añadir Comentario"}
                     className="ButtonDesign"
                     onClick={postComment}
                 />
-            </div>
             <div className="comments-container">
                 <div className="comments">
                     {comments.sort((a, b) => new Date(b?.created_at) - new Date(a?.created_at))

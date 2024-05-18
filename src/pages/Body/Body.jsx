@@ -10,6 +10,7 @@ import { UsersSuperAdmin } from "../UsersSuperAdmin/UsersSuperAdmin"
 import { HomeUser } from "../HomeUser/HomeUser"
 import { DetailUser } from "../DetailUser/DetailUser"
 import { DetailIssueSuperAdmin } from "../DetailIssueSuperAdmin/DetailIssueSuperAdmin"
+import { ListIssuesSuperAdmin } from "../ListIssuesSuperAdmin/ListIssuesSuperAdmin"
 
 
 export const Body = () => {
@@ -27,6 +28,7 @@ export const Body = () => {
              <Route path="/admin/users/:id" element={<DetailUser/>} />
              {/* <Rote path= "/admin/issues"element={<IssuesUser/>}/> */}
              <Route path="/admin/issue/:id" element={<DetailIssueSuperAdmin/>} />
+             <Route path="/admin/issues" element={<ListIssuesSuperAdmin/>} />
         </Routes>
     )
 }

@@ -56,41 +56,41 @@ export const DetailIssue = ({ id }) => {
     return (
         <div className="detailIssue">
             <div className="detailIssue-container">
-                <div className="container1">
-                    <div className="dateIssue container-fields">
+                <div className="">
                         <label>Fecha</label>
+                    {/* <div className="dateIssue container-fields"> */}
                         <p className='styled-p'> {new Date(issueSelected.created_at).toLocaleDateString('es-ES')}</p>
-                    </div>
-                    <div className="detailIssue-user container-fields">
+                    {/* </div> */}
                         <label>Usuario</label>
+                    {/* <div className="detailIssue-user container-fields"> */}
                         <p className='styled-p'>{issueSelected.user?.name}</p>
-                    </div>
-                    <div className="detailIssue-status container-fields">
+                    {/* </div> */}
                         <label>Estado</label>
+                    {/* <div className="detailIssue-status container-fields"> */}
                         <p className='styled-p' style={{ backgroundColor: issueSelected.status === 'CERRADA' ? 'red' : issueSelected.status === 'EN TRÁMITE' ? 'yellow' : 'green' }}>{issueSelected.status}</p>
-                    </div>
+                    {/* </div> */}
                 </div>
-                <div className="container2">
-                    <div className="detailIssue-department container-fields">
+                <div className="">
                         <label>Departamento</label>
+                    {/* <div className="detailIssue-department container-fields"> */}
                         <p className='styled-p'>{issueSelected.department?.name}</p>
-                    </div>
+                    {/* </div> */}
 
-                    <div className="detailIssue-issueType container-fields">
                         <label>Tipo de incidencia</label>
+                    {/* <div className="detailIssue-issueType container-fields"> */}
                         <p className='styled-p'>{issueSelected.issue_type?.name}</p>
-                    </div>
+                    {/* </div> */}
                 </div>
-                <div className="container3">
-                    <div className="detailIssue-title container-fields">
+                {/* <div className="container3"> */}
                         <label>Titulo</label>
+                    {/* <div className="detailIssue-title container-fields"> */}
                         <p className='styled-p'>{issueSelected.title}</p>
-                    </div>
-                    <div className="detailIssue-description container-fields">
+                    {/* </div> */}
                         <label>Descripción</label>
+                    {/* <div className="detailIssue-description container-fields"> */}
                         <p className='styled-p'>{issueSelected.description}</p>
-                    </div>
-                </div>
+                    {/* </div> */}
+                {/* </div> */}
             </div>
             <div className="newComment-container">
                 <textarea
@@ -99,46 +99,33 @@ export const DetailIssue = ({ id }) => {
                     value={bodyDataComment.comment}
                     onChange={inputHandler}
                 />
-                <Button
-                    title={"Nuevo Comentario"}
+            </div>
+            <Button
+                    title={"Añadir Comentario"}
                     className="ButtonDesign"
                     onClick={postComment}
                 />
-            </div>
             {/* <h3>Historial</h3> */}
             <div className="comments-container">
 
                 <div className="comments">
-                    <div className="comment-header">
-                        <div className="comment-user">
-                            <label>Usuario</label>
-                        </div>
-                        <div className="comment-date">
-                            <label>Fecha</label>
-                        </div>
-                        <div className="comment-time">
-                            <label>Hora</label>
-                        </div>
-                        <div className="comment-content">
-                            <label>Comentario</label>
-                        </div>
-                    </div>
                     {comments.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
                         .map((comment, index) => (
-                            <div className="comment" key={index}>
-                                {/* <div className="comment-user">
-                                <p className='styled-p'>{comment.user ? comment.user.name : 'Unknown'}</p>
-                                </div> */}
-                                <div className="comment-date">
-                                    <p className='styled-p'>{new Date(comment.created_at).toLocaleDateString('es-ES')}</p>
-                                </div>
-                                <div className="comment-time">
-                                    <p className='styled-p'>{new Date(comment.created_at).toLocaleTimeString('es-ES')}</p>
-                                </div>
-                                <div className="comment-description">
-                                    <p className='styled-p comment-text'>{comment.content}</p>
-                                </div>
+                            // <div className="comments-container">
+                            <div className="comments">
+                                {comments.sort((a, b) => new Date(b?.created_at) - new Date(a?.created_at))
+                                    .map((comment, index) => (
+                                        comment &&
+                                        <div className="comment-user" key={index}>
+                                            <p className="align-right">{new Date(comment.created_at).toLocaleDateString('es-ES')}
+                                                {" - " + new Date(comment.created_at).toLocaleTimeString('es-ES')}</p>
+                                            <p><label>Usuario: </label>{comment.user?.name}</p>
+                                            <p><label>Comentario: </label>{comment.content}</p>
+                                        </div>
+                                    ))
+                                }
                             </div>
+                        // </div>
                         ))
                     }
                 </div>

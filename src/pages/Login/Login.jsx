@@ -27,8 +27,7 @@ export const Login = () => {
     )
 
     const LogMe = async () => {
-        setBodyCredentialsError({ ...bodyCredentialsError, email: "" })
-        setBodyCredentialsError({ ...bodyCredentialsError, password: "" })
+        setBodyCredentialsError({ ...bodyCredentialsError, email: "", password: ""  })
 
         if (!bodyCredentials.email) {
             setBodyCredentialsError({ ...bodyCredentialsError, email: "Introduce un email" })
@@ -50,7 +49,8 @@ export const Login = () => {
                 {
                     token: responseApiLogin.token,
                     userId: decoded.userId,
-                    role: decoded.roleName
+                    role: decoded.roleName,
+                    name: decoded.username
                 }
             ))
 

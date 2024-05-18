@@ -365,6 +365,7 @@ export const createCommentAsAdmin = async (token, bodyDataComment) => {
         return error
     }
 }
+
 export const updateIssueStatus = async (token, id, issueStatus) => {
     const response = await fetch(
         `${apiUrl}/api/issues/${id}`, {
@@ -381,4 +382,26 @@ export const updateIssueStatus = async (token, id, issueStatus) => {
     }
 
     return await response.json()
+}
+
+export const getIssues = async (token) => {
+    try {
+        const response = await fetch(
+            `${apiUrl}/api/issues/admin`,
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                },
+            }
+        )
+
+        const data = await response.json()
+
+        return data
+
+    } catch (error) {
+        return error
+    }
 }

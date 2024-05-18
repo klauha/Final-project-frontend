@@ -94,14 +94,11 @@ export const DetailUser = ({ id }) => {
 
     ]
     const deleteUser = async (user) => {
-
-        if (window.confirm('¿Estás seguro de que quieres eliminar a este usuario?')) {
-            try {
-                const response = await deleteUserbyAdmin(userSelected.id, rdxUser.token)
-                console.log(response)
-            } catch (error) {
-                console.error(error)
-            }
+        try {
+            const response = await deleteUserbyAdmin(userSelected.id, rdxUser.token)
+            navigate('/admin/users')
+        } catch (error) {
+            console.error(error)
         }
     }
     const handleDetailClick = (id) => {
@@ -113,33 +110,33 @@ export const DetailUser = ({ id }) => {
             <div className="detailUser">
                 <div className="detailUser-container">
                     {/* <div className="container-data"> */}
-                        <div className="container-data1">
-                                <label>Nombre</label>
-                           
-                                <p className='styled-p'> {userSelected.name}</p>
-                         
-                                <label>Email</label>
-                           
-                                <p className='styled-p'>{userSelected.email}</p>
-                    
-                        </div>
-                        <div className="container-data2">
-                                <label>Apellidos</label>
-                 
-                                <p className='styled-p'>{userSelected.surname}</p>
-                     
-                                <label>Rol</label>
-                          
-                                <p className='styled-p'>{userSelected.role?.title}</p>
-                         
-                        </div>
-                        <div className="container-button">
-                            <Button
-                                title={"Eliminar usuario"}
-                                className="ButtonDesign"
-                                onClick={deleteUser}
-                            />
-                        </div>
+                    <div className="container-data1">
+                        <label>Nombre</label>
+
+                        <p className='styled-p'> {userSelected.name}</p>
+
+                        <label>Email</label>
+
+                        <p className='styled-p'>{userSelected.email}</p>
+
+                    </div>
+                    <div className="container-data2">
+                        <label>Apellidos</label>
+
+                        <p className='styled-p'>{userSelected.surname}</p>
+
+                        <label>Rol</label>
+
+                        <p className='styled-p'>{userSelected.role?.title}</p>
+
+                    </div>
+                    <div className="container-button">
+                        <Button
+                            title={"Eliminar usuario"}
+                            className="ButtonDesign"
+                            onClick={deleteUser}
+                        />
+                    </div>
                     {/* </div> */}
                 </div>
                 <div className="my-issues-dessign">
