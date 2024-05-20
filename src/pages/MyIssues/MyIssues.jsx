@@ -11,7 +11,6 @@ import { Button } from "../../common/Button/Button"
 export const MyIssues = () => {
     const rdxUser = useSelector(userData)
     const [MyIssues, setMyIssues] = useState([])
-    const [issueSelected, setIssueSelected] = useState([])
     const navigate = useNavigate();
 
     const handleDetailClick = (id) => {
@@ -69,7 +68,6 @@ export const MyIssues = () => {
     useEffect(() => {
         const fetchMyIssues = async () => {
             const response = await getMyIssues(rdxUser.token)
-            console.log(response)
             setMyIssues(response.data)
         }
         fetchMyIssues()
@@ -114,9 +112,6 @@ export const MyIssues = () => {
                             },
                           ]}
                     />
-                </div>
-                <div className="container-issue-selected">
-                    <issueSelected issueSelected={issueSelected} />
                 </div>
             </div>
         </>
